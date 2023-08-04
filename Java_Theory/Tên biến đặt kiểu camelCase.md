@@ -1,0 +1,1 @@
+# Hãy sử dụng định dạng camelCase (danh pháp lạc đà) để phân tách các từ. Trong camelCase, từ đầu tiên được viết thường và chữ cái đầu tiên của từ thứ hai trở đi được viết hoa.
