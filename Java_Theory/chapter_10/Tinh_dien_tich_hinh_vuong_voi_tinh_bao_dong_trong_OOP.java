@@ -26,7 +26,7 @@ class Square {
     }
 }
 
-class Main {
+class Tinh_dien_tich_hinh_vuong_voi_tinh_bao_dong_trong_OOP {
     public static void main(String[] args) {
 
         // get input value for length

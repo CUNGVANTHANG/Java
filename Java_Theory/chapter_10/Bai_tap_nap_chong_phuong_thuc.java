@@ -13,7 +13,7 @@ class Area {
     }
 }
 
-class Main {
+class Bai_tap_nap_chong_phuong_thuc {
 
     public static void main(String[] args) {
 

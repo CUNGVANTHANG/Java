@@ -26,7 +26,7 @@ class Cat extends Animal {
     }
 }
 
-class Main {
+class Ghi_de_phuong_thuc_cua_nhieu_lop {
     public static void main(String[] args) {
 
         // create objects of Dog and Cat

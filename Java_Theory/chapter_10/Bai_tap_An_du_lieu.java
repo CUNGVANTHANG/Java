@@ -19,7 +19,7 @@ class Person {
     }
 }
 
-class Main {
+class Bai_tap_An_du_lieu {
 
     public static void main(String[] args) {
 

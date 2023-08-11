@@ -1,7 +1,7 @@
 package chapter_11;
 
 class Animal {
-
+    String name;
     // constructor of the Animal class
     Animal(String type) {
         System.out.println(type);
@@ -23,10 +23,11 @@ class Cat extends Animal {
     }
 }
 
-class Main {
+class Truy_cap_ham_khoi_tao_cua_lop_cha {
     public static void main(String[] args) {
 
         // create an object of Cat named cat1
         Cat cat1 = new Cat();
+        cat1.name = "Cat";
     }
 }

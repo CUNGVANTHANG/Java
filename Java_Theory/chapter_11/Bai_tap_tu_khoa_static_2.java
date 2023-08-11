@@ -11,7 +11,7 @@ class Calculator {
     }
 }
 
-class Main {
+class Bai_tap_tu_khoa_static_2 {
     public static void main(String[] args) {
 
         // access the field name using the class name

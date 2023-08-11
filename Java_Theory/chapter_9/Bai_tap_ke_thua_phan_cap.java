@@ -21,7 +21,7 @@ class Employee extends Person {
     }
 }
 
-class Main {
+class Bai_tap_ke_thua_phan_cap {
     public static void main(String[] args) {
 
         // create objects of Student and Employee class

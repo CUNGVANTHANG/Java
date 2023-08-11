@@ -2,7 +2,7 @@ package chapter_11;
 
 import java.util.Scanner;
 
-class Main {
+class Ghi_de_phuong_thuc_final {
 
     // create a final method setName() without any parameter
     // print Programiz inside the method
@@ -18,7 +18,7 @@ class Main {
     public static void main(String[] args) {
 
         // create an object of Main
-        Main obj = new Main();
+        Ghi_de_phuong_thuc_final obj = new Ghi_de_phuong_thuc_final();
 
         // get input value for the name
         Scanner input = new Scanner(System.in);

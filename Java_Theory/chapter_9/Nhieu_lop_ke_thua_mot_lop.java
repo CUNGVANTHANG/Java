@@ -15,7 +15,7 @@ class Triangle extends Polygon {
 
 }
 
-class Main {
+class Nhieu_lop_ke_thua_mot_lop {
     public static void main(String[] args) {
 
         // create object of both Rectangle and Triangle

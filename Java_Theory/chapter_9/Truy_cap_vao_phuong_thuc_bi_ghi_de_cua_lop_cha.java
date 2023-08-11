@@ -20,7 +20,7 @@ class Dog extends Animal {
     }
 }
 
-class Main {
+class Truy_cap_vao_phuong_thuc_bi_ghi_de_cua_lop_cha {
     public static void main(String[] args) {
 
         // create objects of Dog

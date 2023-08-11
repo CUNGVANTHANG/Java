@@ -14,7 +14,7 @@ class Dog extends Animal {
     }
 }
 
-class Main {
+class Bai_tap_phuong_thuc_Lop_truu_tuong {
     public static void main(String[] args) {
 
         // create object of Dog

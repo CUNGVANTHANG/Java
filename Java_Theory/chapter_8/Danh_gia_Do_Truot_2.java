@@ -21,7 +21,7 @@ class Student {
 }
 
 // Main Class
-class Main {
+class Danh_gia_Do_Truot_2 {
     public static void main(String[] args) {
 
         // create objects

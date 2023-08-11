@@ -20,7 +20,7 @@ class Triangle {
     }
 }
 
-class Main {
+class Tinh_dien_tich_hai_tam_giac {
     public static void main(String[] args) {
 
         // create the first object t1 of Triangle with parameter 5 and 14

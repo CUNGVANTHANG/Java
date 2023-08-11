@@ -24,7 +24,7 @@ class Employee {
     }
 }
 
-class Main {
+class Nhan_va_thiet_lap_muc_tien_luong_cua_nhan_vien {
     public static void main(String[] args) {
 
         // compute salary of Felix

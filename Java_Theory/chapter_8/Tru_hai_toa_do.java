@@ -17,7 +17,7 @@ class Coordinate {
 }
 
 // Main class
-class Main {
+class Tru_hai_toa_do {
 
     // main method
     public static void main(String[] args) {

@@ -25,7 +25,7 @@ class Quadrilateral extends Polygon {
   }
 }
 
-class Main {
+class Bai_tap_ghi_de_phuong_thuc {
     public static void main(String[] args) {
         
         // create an object of Quadrilateral

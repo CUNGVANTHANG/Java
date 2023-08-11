@@ -4,7 +4,7 @@ class Tiger {
 
 }
 
-class Main {
+class Kiem_tra_mot_doi_tuong_cua_lop {
 
     // main method
     public static void main(String[] args) {

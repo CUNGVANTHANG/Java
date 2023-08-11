@@ -13,7 +13,7 @@ class Company {
     }
 }
 
-class Main {
+class Bai_tap_tu_khoa_static_1 {
 
     // main method
     public static void main(String[] args) {

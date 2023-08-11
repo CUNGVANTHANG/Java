@@ -26,7 +26,7 @@ class Temperature {
 }
 
 // Main class
-class Main {
+class Kiem_tra_nhiet_do {
     
     // main() method
     public static void main(String[] args) {

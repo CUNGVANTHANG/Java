@@ -18,7 +18,7 @@ class Student extends Person {
     }
 }
 
-class Main {
+class Bai_tap_tu_khoa_super {
     public static void main(String[] args) {
 
         // create an object of Student named student1

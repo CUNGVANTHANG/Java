@@ -18,7 +18,7 @@ class Car extends Vehicle {
     }
 }
 
-class Main {
+class Ghi_de_phuong_thuc_cua_lop_cha {
     public static void main(String[] args) {
 
         // create an object of Car

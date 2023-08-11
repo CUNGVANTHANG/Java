@@ -22,7 +22,7 @@ class Rectangle {
     }
 }
 
-class Main {
+class Tinh_dien_tich_hinh_chu_nhat {
     public static void main(String[] args) {
 
         // input values for x and y

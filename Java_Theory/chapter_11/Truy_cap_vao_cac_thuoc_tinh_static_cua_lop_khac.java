@@ -14,7 +14,7 @@ class College {
     }
 }
 
-class Main {
+class Truy_cap_vao_cac_thuoc_tinh_static_cua_lop_khac {
 
     // create main() method
     public static void main(String[] args) {

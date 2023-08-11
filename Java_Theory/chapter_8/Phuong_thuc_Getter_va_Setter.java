@@ -17,7 +17,7 @@ class Person {
     }
 }
 
-class Main {
+class Phuong_thuc_Getter_va_Setter {
 
     public static void main(String[] args) {
 

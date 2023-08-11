@@ -17,7 +17,7 @@ class ComplexNumber {
 }
 
 // Main class
-class Main {
+class Cong_hai_so_phuc {
     
     // main method
     public static void main(String[] args) {

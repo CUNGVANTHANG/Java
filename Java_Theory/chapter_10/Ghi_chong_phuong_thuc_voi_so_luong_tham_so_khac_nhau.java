@@ -17,7 +17,7 @@ class Addition {
     }
 }
 
-class Main {
+class Ghi_chong_phuong_thuc_voi_so_luong_tham_so_khac_nhau {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);

@@ -20,7 +20,7 @@ class Triangle {
     }
 }
 
-class Main {
+class Bai_tap_tinh_dien_tich_tam_giac_vuong {
     public static void main(String[] args) {
         
         // get input values for base and height

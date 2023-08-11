@@ -23,7 +23,7 @@ class Square implements Polygon {
     }
 }
 
-class Main {
+class Trien_khai_cai_dat_interface {
     public static void main(String[] args) {
 
         // get input value for the length

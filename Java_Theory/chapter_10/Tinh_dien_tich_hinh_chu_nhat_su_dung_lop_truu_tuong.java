@@ -26,7 +26,7 @@ class Rectangle implements Polygon {
     }
 }
 
-class Main {
+class Tinh_dien_tich_hinh_chu_nhat_su_dung_lop_truu_tuong {
     public static void main(String[] args) {
 
         // get input value for length and breadth

@@ -25,7 +25,7 @@ class Dog extends Mammal {
     }
 }
 
-class Main {
+class Ke_thua_nhieu_cap {
     public static void main(String[] args) {
 
         // get input value for the name

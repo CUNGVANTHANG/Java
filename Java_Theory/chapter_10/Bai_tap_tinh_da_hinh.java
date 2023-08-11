@@ -18,7 +18,7 @@ class LocalGreeting extends Greeting {
     }
 }
 
-class Main {
+class Bai_tap_tinh_da_hinh {
     public static void main(String[] args) {
 
         // Scanner object

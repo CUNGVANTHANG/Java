@@ -25,7 +25,7 @@ class Student {
 }
 
 // Main class
-class Main {
+class Chinh_sua_ten_hoc_sinh {
     
     // main method
     public static void main(String[] args) {

@@ -19,7 +19,7 @@ class Employee {
     }
 }
 
-class Main {
+class Luong_nhan_vien_voi_tinh_bao_dong_trong_OOP {
 
     // main method
     public static void main(String[] args) {

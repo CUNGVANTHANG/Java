@@ -27,7 +27,7 @@ class Student {
     }
 }
 
-class Main {
+class Ham_khoi_tao_co_tham_so {
     public static void main(String[] args) {
         
         // take the score input

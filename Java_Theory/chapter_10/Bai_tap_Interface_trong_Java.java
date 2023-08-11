@@ -17,7 +17,7 @@ class Triangle implements Polygon {
     }
 }
 
-class Main {
+class Bai_tap_Interface_trong_Java {
     public static void main(String[] args) {
         
         // object of Triangle class
