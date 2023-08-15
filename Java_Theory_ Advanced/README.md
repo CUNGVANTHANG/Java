@@ -107,7 +107,8 @@ Chúng ta có thể **thêm và xóa các phần tử ở cả phía trước v�
 ### 3. HashSet
 [:arrow_up: Mục lục](#mục-lục)
 
-![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/0e037865-a30f-4318-91e0-e63f9a3f96ef)
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/0e037865-a30f-4318-91e0-e63f9a3f96ef" height="200px">
+
 
 Nếu chúng ta cần lưu trữ các phần tử duy nhất thì tốt hơn là sử dụng ```HashSet``` bởi vì không giống như ```ArrayList``` và ```LinkedList```, **```HashSet``` không chứa các giá trị trùng lặp**.
 
