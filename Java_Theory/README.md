@@ -7,7 +7,7 @@
   - [4. Vòng lặp for-each](#4-vòng-lặp-for-each)
   - [5. Phương thức](#5-phương-thức)
   - [6. Chuỗi](#6-chuỗi)
-- [II. Kiến thức lập trình hướng đối tượng (OOP)](#ii-kiến-thức-lập-trình-hướng-đối-tượng-oop)
+- [II. Kiến thức lập trình hướng đối tượng OOP](#ii-kiến-thức-lập-trình-hướng-đối-tượng-oop)
   - [1. Tính đóng gói](#1-tính-kế-thừa)
   - [2. Tính trừu tượng](#2-tính-trừu-tượng)
   - [3. Tính đa hình](#3-tính-đa-hình)
@@ -207,7 +207,7 @@ class Main {
 | :--- | :--- |
 | ```+``` | nối hai chuỗi |
 
-## II. Kiến thức lập trình hướng đối tượng (OOP)
+## II. Kiến thức lập trình hướng đối tượng OOP
 [:arrow_up: Mục lục](#mục-lục)
 
 - **Tạo lớp:**
