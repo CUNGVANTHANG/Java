@@ -1,6 +1,6 @@
 # Java Theory
 ## MỤC LỤC
-- [I. Kiến thức lập trình cơ bản](#i)
+- [I. Kiến thức lập trình cơ bản]()
   - [1. Xuất dữ liệu](#1-xuất-dữ-liệu)
   - [2. Nhập dữ liệu đầu vào từ bàn phím]()
   - [3. Mảng]()
@@ -9,7 +9,7 @@
   - [6. Chuỗi]()
 - [II. Kiến thức lập trình hướng đối tượng (OOP)]()
 
-## Kiến thức lập trình cơ bản
+## I. Kiến thức lập trình cơ bản
 ### 1. Xuất dữ liệu
 **Cú pháp:**
 ```java
@@ -65,6 +65,8 @@ int age = input.next();
 input.close();
 ```
 ### 3. Mảng
+- **Mảng 1 chiều**
+
 **Tạo mảng có giá trị:**
 ```java
 int[] age = {24, 23, 18, 19, 20};
@@ -86,7 +88,29 @@ hoặc
 ```java
 int numbers[] = new int[4];
 ```
-**Kích thước mảng:**
+- **Mảng 2 chiều**
+
+**Tạo mảng 2 chiều có giá trị:**
+```java
+int[][] data = { {2, 3, 5}, {7, 14, 21}, {1, 3, 5} };
+```
+
+hoặc 
+
+```java
+int data[][] = { {2, 3, 5}, {7, 14, 21}, {1, 3, 5} };
+```
+**Tạo mảng 2 chiều bằng cách xác định kích thước:**
+```java
+int[][] data = new int[3][4];
+```
+hoặc
+
+```java
+int data[][] = new int[3][4];
+```
+
+- **Kích thước mảng:**
 ```java
 numbers.length
 ```
