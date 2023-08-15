@@ -7,14 +7,14 @@
   - [4. Vòng lặp for-each](#4-vòng-lặp-for-each)
   - [5. Phương thức](#5-phương-thức)
   - [6. Chuỗi](#6-chuỗi)
-- [II. Kiến thức lập trình hướng đối tượng (OOP)]()
-  - [1. Tính đóng gói]()
-  - [2. Tính trừu tượng]()
-  - [3. Tính đa hình]()
-  - [4. Tính đóng gói]()
-  - [5. Toán tử instanceof]()
-  - [6. Từ khóa static]()
-  - [7. Từ khóa final]()
+- [II. Kiến thức lập trình hướng đối tượng (OOP)](#ii-kiến-thức-lập-trình-hướng-đối-tượng-oop)
+  - [1. Tính đóng gói](#1-tính-kế-thừa)
+  - [2. Tính trừu tượng](#2-tính-trừu-tượng)
+  - [3. Tính đa hình](#3-tính-đa-hình)
+  - [4. Tính đóng gói](#4-tính-đóng-gói)
+  - [5. Toán tử instanceof](#5-toán-tử-instanceof)
+  - [6. Từ khóa static](#6-từ-khóa-static)
+  - [7. Từ khóa final](#7-từ-khóa-final)
 
 ## I. Kiến thức lập trình cơ bản
 ### 1. Xuất dữ liệu
