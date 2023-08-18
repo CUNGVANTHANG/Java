@@ -140,6 +140,8 @@ Data_types ~ ```Integer```, ```String```, ```Double```
 | ```removeAll()``` | Thực hiện **Phép hiệu** của 2 HashSet |
 
 ### 4. HashMap
+[:arrow_up: Mục lục](#mục-lục)
+
 Tương tự như arraylist và linkedlist, hashmap cũng được dùng để lưu trữ nhiều phần tử. Tuy nhiên, mỗi phần tử của hashmap là một cặp **khóa/giá trị**.
 
 Trong đó:
@@ -147,7 +149,6 @@ Trong đó:
 - `giá trị` - dữ liệu thực tế được truy cập bằng khóa
 
 **4.1. Tạo HashMap**
-[:arrow_up: Mục lục](#mục-lục)
 
 **Bước 1:** Nhập gói HashMap
 
@@ -275,3 +276,24 @@ Entry<String, Integer> entry : numbers.entrySet()
 student2.putAll(student);
 ```
 Phương thức `putAll()` thêm tất cả các phần tử từ HashMap `student` vào `student2`.
+
+### 5. Thuật toán về Java Collections
+
+**Bước 1:** Nhập gói `java.util.Collections`.
+
+```java
+import java.util.Collections;
+```
+Ví dụ: 
+
+```java
+ArrayList<Integer> numbers = new ArrayList<>();
+```
+
+| Phương thức | Mô tả |
+| :--- | :--- |
+| `Collections.sort(numbers)` | Sắp xếp tất cả các phần tử của arraylist |
+| `Collections.shuffle(numbers)` | Xóa trộn tất cả các phần tử của arraylist |
+| `Collections.binarySearch(numbers, element_to_search_for)` | Tìm kiếm phần tử (element) trong arraylist, trả về vị trí index của phần tử (element) đó |
+| `Collections.max(numbers)` | Tìm phần tử lớn nhất trong arraylist |
+| `Collections.min(numbers)` | Tìm phần tử nhỏ nhất trong arraylist |
