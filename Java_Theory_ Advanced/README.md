@@ -1,4 +1,4 @@
-# Java Theory Advanced
+# Java Theory Advanced (Java Collections)
 ## Mục lục
 - [I. Java Collections](#i-java-collections)
   - [1. ArrayList](#1-arraylist)
@@ -139,3 +139,132 @@ Data_types ~ ```Integer```, ```String```, ```Double```
 | ```retainAll()``` | Thực hiện **Phép giao** của 2 HashSet |
 | ```removeAll()``` | Thực hiện **Phép hiệu** của 2 HashSet |
 
+### 4. HashMap
+Tương tự như arraylist và linkedlist, hashmap cũng được dùng để lưu trữ nhiều phần tử. Tuy nhiên, mỗi phần tử của hashmap là một cặp **khóa/giá trị**.
+
+Trong đó:
+- `khóa` - mã định danh duy nhất được liên kết với từng giá trị
+- `giá trị` - dữ liệu thực tế được truy cập bằng khóa
+
+**4.1. Tạo HashMap**
+[:arrow_up: Mục lục](#mục-lục)
+
+**Bước 1:** Nhập gói HashMap
+
+```java
+import java.util.HashMap;
+```
+
+**Bước 2:** Tạo đối tượng của lớp HashMap
+
+```java
+HashMap<Integer, String> students = new HashMap<>();
+```
+
+Ở trên, chúng ta đã tạo một `HashMap` có tên là `students`. Trong đó:
+
+`Integer` - đại diện cho kiểu dữ liệu của khóa
+
+`String` - đại diện cho kiểu dữ liệu của giá trị
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/e31b04e4-22cd-4d2d-b6cc-26e2437e974a)
+
+**4.2. Các thao tác với HashMap**
+
+| Phương thức | Mô tả |
+| :--- | :--- |
+| `put(key, value)` | Thêm phần tử vào HashMap |
+| `get(key)` | Truy cập phần tử của HashMap |
+| `replace(key, value)` | Thay đổi phần tử của HashMap |
+| `remove(key)` | Xóa phần tử khỏi của HashMap |
+
+**1. Lặp qua HashMap ta sử dụng vòng lặp for-each:**
+
+**Bước 1:** Truy cập tất cả các khóa của HashMap
+
+```java
+for (Integer key : students.keySet()) {
+    ...
+}
+```
+`student.keySet()` trả về tất cả các khóa của HashMap. Vòng lặp for sau đó lần lượt lặp qua tất cả các khóa.
+
+**Bước 2:** Truy cập các giá trị bằng khóa
+
+```java
+// get the value of key using get()
+System.out.println(key + ": " + students.get(key));
+```
+Bên trong vòng lặp:
+
+- `key` - in khóa của HashMap
+
+- `get(key)` - in giá trị được liên kết với khóa
+
+**2. Lấy khóa của HashMap sử dụng giá trị:**
+
+Chúng ta có thể lấy khóa cho một giá trị nhất định trong hashmap.
+
+Giả sử, chúng ta có hashmap sau.
+```
+{1=One, 2=Two, 3=Three}
+```
+
+Và chúng ta cần khóa của giá trị `Three`. Để làm điều đó, chúng ta sử dụng phương thức `getValue()`.
+
+**Bước 1:** 
+
+```java
+import java.util.Map.Entry;
+```
+
+**Bước 2:** Ví dụ 
+```java
+import java.util.HashMap;
+import java.util.Map.Entry;
+ 
+class Main {
+    public static void main(String[] args) {
+ 
+        // create a hashmap
+        HashMap<Integer, String> numbers = new HashMap<>();
+        numbers.put(1, "One");
+        numbers.put(2, "Two");
+        numbers.put(3, "Three");
+ 
+        // value whose key is to be searched
+        String value = "Three";
+ 
+        // print collection view
+        System.out.println("Collection view: " + numbers.entrySet());
+ 
+        // iterate each entry of hashmap
+        for (Entry<Integer, String> entry : numbers.entrySet()) {
+            
+            // if give value is equal to value from entry
+            // print the corresponding key
+            if (entry.getValue() == value) {
+                System.out.println("The key for value " + value + " is " + entry.getKey());
+                break;
+            }
+        }
+    }
+}
+```
+Đầu ra
+
+```
+Collection view: [1=One, 2=Two, 3=Three]
+The key for value Three is 3
+```
+
+Trong ví dụ trên, chúng ta đã tạo một hashmap có tên là numbers. Ở đây, chúng ta muốn lấy khóa cho giá trị `Three`. Để ý dòng
+
+```java
+Entry<String, Integer> entry : numbers.entrySet()
+```
+
+Ở đây, phương thức `entrySet()` trả về chế độ xem tập hợp các mục nhập (cặp khóa/giá trị).
+
+- `entry.getValue()` - nhận giá trị từ mục nhập
+- `entry.getKey()` - lấy khóa từ mục nhập
