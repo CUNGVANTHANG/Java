@@ -1,4 +1,4 @@
-# Java Theory
+# Java Theory (Java core & Java OOP basic)
 ## MỤC LỤC
 - [I. Kiến thức lập trình cơ bản](#i-kiến-thức-lập-trình-cơ-bản)
   - [1. Xuất dữ liệu](#1-xuất-dữ-liệu)
