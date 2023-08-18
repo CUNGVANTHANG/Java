@@ -14,6 +14,10 @@
   - [5. Thư mục](#5-thư-mục)
   - [6. Xử lý file](#6-xử-lý-file)
 - [IV. Các chủ đề bổ sung]()
+  - [1. Gói](#1-gói)
+  - [2. Annotation](#2-annotation)
+  - [3. Lớp lồng nhau](#3-lớp-lồng-nhau)
+  - [4. Lớp Generics](#4-lớp-generics)
 
 ## I. Java Collections
 Framework Collections cung cấp nhiều lớp và interface để triển khai những kiểu cấu trúc dữ liệu khác nhau.
@@ -617,3 +621,319 @@ boolean value = oldFile.renameTo(newFile);
 ```
 
 Phương thức `renameTo()` trả về `true` nếu tên file được đổi thành công. Nếu không, nó trả về `false`.
+
+## IV. Các chủ đề bổ sung
+### 1. Gói
+[:arrow_up: Mục lục](#mục-lục)
+
+- **Gói do người dùng định nghĩa**
+
+Cho đến nay, chúng ta đã học và sử dụng nhiều gói tích hợp của Java trong chương trình. Ví dụ:
+
+```java
+// to take input value
+import java.util.Scanner;
+
+// to use the ArrayList class
+import java.util.ArrayList;
+```
+
+Các gói này cung cấp các phương thức để thực hiện những tác vụ khác nhau trong chương trình.
+
+Trong Java, chúng ta cũng có thể tạo các gói tùy chỉnh, đây gọi là **gói do người dùng định nghĩa**.
+
+- **Tạo gói:**
+
+Chúng ta sử dụng từ khóa package để tạo một gói trong Java.
+
+```java
+package packageName;
+```
+
+Ví dụ:
+
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/01aa8b18-cf7c-405d-916c-80f5311b0147" height="200px">
+
+```java
+package programiz;
+
+public class Teacher {
+    
+    public void getTeacherInfo(int id, String name) {
+      
+        System.out.println(id);
+        System.out.println(name);
+    }
+}
+```
+
+```java
+package programiz;
+
+public class Student {
+    
+    public void getStudentInfo(int id, String name) {
+        
+        System.out.println(id);
+        System.out.println(name);
+    }
+}
+```
+
+-  **Nhập gói do người dùng xác định**
+
+Bây giờ, để sử dụng các trường phương thức của `Teacher.java` và `Student.java` trong một file java khác (bên ngoài gói), chúng ta phải nhập lớp `Student` và `Teacher` từ gói `programiz`.
+
+```java
+import programiz.Teacher;
+import programiz.Student;
+
+class Main {
+    
+    public static void main(String[] args) {
+        
+        Teacher t1 = new Teacher();
+        System.out.println("Teacher info");
+        t1.getTeacherInfo(1, "Bruce");
+        
+        Student s1 = new Student();
+        System.out.println("Student info");
+        s1.getStudentInfo(11, "Peter");
+    }
+}
+```
+
+Trong chương trình trên, câu lệnh:
+
+```java
+import programiz.Teacher;
+```
+
+nhập lớp `Teacher` của gói `programiz` vào Lớp `Main`. Bây giờ, chúng ta có thể tạo các đối tượng và sử dụng các phương thức cũng như các trường của lớp `Teacher` trong lớp `Main`.
+
+```java
+Teacher t1 = new Teacher();
+System.out.println("Teacher info");
+t1.getTeacherInfo(1, "Bruce");
+```
+
+### 2. Annotation
+[:arrow_up: Mục lục](#mục-lục)
+
+Annotation trong Java cung cấp thông tin bổ sung về chương trình mà Java có thể sử dụng.
+
+Annotation bắt đầu bằng `@`. Cú pháp là:
+
+```java
+@AnnotationName
+```
+
+Trong quá trình kế thừa, chúng ta biết rằng nếu một phương thức xuất hiện trong cả lớp cha và lớp con, phương thức trong lớp con sẽ ghi đè phương thức của lớp cha.
+
+Để chỉ định phương thức ghi đè, chúng ta sử dụng annotation `@Override`. Ví dụ:
+
+```java
+class Animal {
+    public void displayInfo() {
+        System.out.println("I am an animal.");
+    }
+}
+ 
+class Dog extends Animal {
+ 
+    @Override
+    public void displayInfo() {
+        System.out.println("I am a dog.");
+    }
+}
+ 
+class Main {
+    public static void main(String[] args) {
+        Dog d1 = new Dog();
+        d1.displayInfo();
+    }
+}
+```
+
+Ở trên, chúng ta đã ghi đè phương thức `displayInfo()` của lớp `Animal` trong lớp `Dog`.
+
+Annotation `@Override` được sử dụng ở trên `displayInfo()` của `Dog` để chỉ định rằng đó là phương thức được ghi đè.
+
+Khi chúng ta sử dụng `@Override`, phương thức sẽ được ghi đè từ lớp cha. Nếu không, chúng ta sẽ nhận được lỗi.
+
+### 3. Lớp lồng nhau
+[:arrow_up: Mục lục](#mục-lục)
+
+```java
+// outer class
+class CPU {
+
+    // nested class
+    class Processor {
+
+        void display() {
+            System.out.println("Processor");
+        }
+
+    }
+}
+```
+
+Để truy cập các trường và phương thức của lớp lồng nhau:
+
+**Bước 1:** Chúng ta phải tạo một đối tượng thuộc lớp ngoài
+
+```java
+CPU cpu = new CPU();
+```
+
+**Bước 2:** Tạo một đối tượng của lớp trong bằng cách sử dụng đối tượng của lớp ngoài
+
+```java
+CPU.Processor p1 = cpu.new Processor();
+```
+
+Vì `Processor` nằm trong lớp `CPU` nên lớp `Processor` được tham chiếu thành `CPU.Processor` thay vì chỉ `Processor`.
+
+### 4. Lớp Generics
+[:arrow_up: Mục lục](#mục-lục)
+
+Java Generics cho phép ta tạo một phương thức/lớp duy nhất hoạt động với các kiểu dữ liệu (đối tượng) khác nhau.
+
+Khi làm việc với tập hợp, chúng ta thấy rằng lớp `ArrayList` có thể được sử dụng với nhiều kiểu dữ liệu khác nhau như: `String`, `Integer`, `Double`, v.v.
+
+```java
+ArrayList<String> ArrayList1 = new ArrayList<>();
+ArrayList<Integer> ArrayList2 = new ArrayList<>();
+```
+
+Đó là bởi vì `ArrayList` là một lớp `generics`. Vì vậy, nó có thể hoạt động với các kiểu dữ liệu khác nhau.
+
+Lưu ý: `Generics` không hoạt động với các kiểu dữ liệu (`int`, `float`, `char`, v.v.).
+
+- **Tạo lớp Generics**
+
+Chúng ta cũng có thể tạo lớp generics của riêng mình được sử dụng với bất kỳ kiểu dữ liệu nào.
+
+```java
+// create a generics class
+class MyClass<T> {
+
+    public MyClass(T data) {
+        System.out.println("Data: " + data);
+    }
+}
+````
+
+Trong đó:
+
+- `MyClass` - tên của lớp `generics`
+- `T` - tham số kiểu cho biết kiểu dữ liệu
+
+Bây giờ, chúng ta có thể sử dụng bất kỳ kiểu dữ liệu nào với `MyClass`.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // Tạo một thể hiện của MyClass với kiểu dữ liệu Integer
+        MyClass<Integer> intObj = new MyClass<>(42); // Đầu ra: Data: 42
+
+        // Tạo một thể hiện của MyClass với kiểu dữ liệu String
+        MyClass<String> stringObj = new MyClass<>("Xin chào, Generics!"); // Đầu ra: Data: Xin chào, Generics!
+    }
+}
+```
+
+- **Phương thức Generics**
+
+Chúng ta cũng có thể tạo các phương thức generics. Phương thức generics có thể được sử dụng với bất kỳ kiểu dữ liệu nào.
+
+```java
+public <T> void display(T data) {
+    …
+    …
+}
+```
+
+`<T>` giữa `public` và `void` có nghĩa là phương thức này là một phương thức `Generics`. Hãy xem một ví dụ:
+
+```java
+class Main {
+ 
+    // create a generics method
+    public <T> void display(T data) {
+ 
+        System.out.println("Data: " + data);
+    }
+ 
+    public static void main(String[] args) {
+        Main obj = new Main();
+ 
+        // generics method working with String
+        obj.<String>display("Java");
+ 
+        // generics method working with integer
+        obj.<Integer>display(25);
+    }
+}
+```
+
+*Cách thức hoạt động của phương thức Generics:*
+
+```java
+// call method with String data
+obj.<String>display("Java");
+```
+
+Chúng ta có thể gọi phương thức `generics` bằng cách đặt kiểu bên trong dấu ngoặc nhọn `<>` trước tên phương thức.
+
+Ở đây, kiểu `T` là `String`, vì vậy ta truyền giá trị `String` "Java" cho phương thức `display`.
+
+- **Tại sao cần sử dụng Generics?**
+
+1. Tái sử dụng code
+
+```java
+public void display(int data) {
+    System.out.println(data);
+}
+```
+
+Chúng ta chỉ có thể truyền dữ liệu `int` cho phương thức này. Nếu muốn truyền dữ liệu `String`, chúng ta sẽ phải tạo một phương thức khác cho nó.
+
+Tuy nhiên, với `Generics`, chúng ta chỉ cần sử dụng một phương thức và có thể truyền bất kỳ kiểu dữ liệu nào ta muốn.
+
+```java
+public <T> void display(T data) {
+ 
+    System.out.println(data);
+}
+```
+
+2. Kiểm tra kiểu
+
+```java
+MyClass<String> stringObj = new MyClass<>("Hello");
+```
+
+Code này sẽ chỉ hoạt động với dữ liệu `String`. Nếu cố truyền một giá trị khác String thì chúng ta sẽ gặp lỗi.
+
+3. Sử dụng với Collections
+
+Collections trong Java cũng sử dụng khái niệm Generics.
+
+```java
+// creating a String type ArrayList
+ArrayList<String> list1 = new ArrayList<>();
+
+// creating a Integer type ArrayList
+ArrayList<Integer> list2 = new ArrayList<>();
+```
+
+Ở đây, chúng ta đã sử dụng cùng một lớp `ArrayList` để làm việc với các kiểu dữ liệu khác nhau.
+
+Tương tự như `ArrayList`, các collection khác (`LinkedList`, `HashSet`, `HashMap`, v.v.) cũng là các lớp `generics` trong Java.
+
+### 5. Biểu thức Lambda
+[:arrow_up: Mục lục](#mục-lục)
+
