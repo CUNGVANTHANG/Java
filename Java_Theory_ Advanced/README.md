@@ -4,7 +4,7 @@
   - [1. ArrayList](#1-arraylist)
   - [2. LinkedList](#2-linkedlist)
   - [3. HashSet](#3-hashset)
-  - [4. HashMap]()
+  - [4. HashMap](#4-hashmap)
 - [II. Xử lý ngoại lệ]()
 
 ## I. Java Collections
@@ -268,3 +268,10 @@ Entry<String, Integer> entry : numbers.entrySet()
 
 - `entry.getValue()` - nhận giá trị từ mục nhập
 - `entry.getKey()` - lấy khóa từ mục nhập
+
+**3. Tạo hashmap từ một hashmap khác**
+
+```java
+student2.putAll(student);
+```
+Phương thức `putAll()` thêm tất cả các phần tử từ HashMap `student` vào `student2`.
