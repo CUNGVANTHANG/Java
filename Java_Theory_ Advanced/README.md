@@ -19,6 +19,8 @@
   - [3. Lớp lồng nhau](#3-lớp-lồng-nhau)
   - [4. Lớp Generics](#4-lớp-generics)
   - [5. Biểu thức Lambda](#5-biểu-thức-lambda)
+  - [6. Autoboxing và Unboxing](#6-autoboxing-và-unboxing)
+  - [7. Enum](#7-enum)
 
 ## I. Java Collections
 Framework Collections cung cấp nhiều lớp và interface để triển khai những kiểu cấu trúc dữ liệu khác nhau.
@@ -1068,3 +1070,80 @@ AddNumbers obj = (x, y) -> {
   return x + y;
 };
 ```
+
+### 6. Autoboxing và Unboxing
+[:arrow_up: Mục lục](#mục-lục)
+
+- **1. Lớp Wrapper**
+
+| Kiểu dữ liệu nguyên thủy | Lớp Wrapper |
+| :--- | :--- |
+| `int` | `Integer` |
+| `float` | `Float` |
+| `double` | `Double` |
+| `boolean` | `Boolean` |
+| `char` | `Character` |
+
+- **2. Autoboxing**
+
+**Autoboxing** là quá trình chuyển đổi kiểu nguyên thủy thành đối tượng lớp wrapper tương ứng. Kiểu chuyển đổi này diễn ra tự động, do đó có tên là **autoboxing**.
+
+Ví dụ: 
+
+```java
+class Main {
+    public static void main(String[] args) {
+ 
+        int x = 25;
+ 
+        // autoboxing
+        Integer xObj = x;
+ 
+        System.out.println(xObj); // 25
+ 
+    }
+}
+```
+
+Ở đây, chúng ta có kiểu dữ liệu nguyên thủy `x` với giá trị **25**. Chúng ta đã gán `x` cho đối tượng của lớp wrapper `Integer`.
+
+```java
+Integer xObj = x;
+```
+
+Trong trường hợp này, kiểu dữ liệu nguyên thủy được tự động chuyển thành đối tượng `Integer`.
+
+- **3. Unboxing**
+
+Trái ngược với autoboxing, **unboxing** là quá trình tự động chuyển đổi đối tượng của lớp wrapper thành kiểu nguyên thủy tương ứng.
+
+Ví dụ:
+
+```java
+class Main {
+    public static void main(String[] args) {
+ 
+        // assign value to Integer object
+        Integer xObj = new Integer(25);
+ 
+        // unboxing
+        int x = xObj;
+ 
+        System.out.println(x); // 25
+ 
+    }
+}
+```
+
+Ở đây, chúng ta đã tạo một đối tượng kiểu Integer với giá trị **25**. Sau đó, chúng ta gán đối tượng cho kiểu nguyên thủy `int`.
+
+```java
+int x = xObj;
+```
+
+Ở đây, đối tượng của lớp `wrapper` sẽ tự động được chuyển thành kiểu nguyên thủy.
+
+### 7. Enum
+[:arrow_up: Mục lục](#mục-lục)
+
+enum hoặc enumeration là một lớp đặc biệt được dùng để định nghĩa một tập hợp các giá trị không đổi (không thể thay đổi) cố định.
