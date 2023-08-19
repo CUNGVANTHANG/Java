@@ -1147,3 +1147,191 @@ int x = xObj;
 [:arrow_up: Mục lục](#mục-lục)
 
 enum hoặc enumeration là một lớp đặc biệt được dùng để định nghĩa một tập hợp các giá trị không đổi (không thể thay đổi) cố định.
+
+- **Tạo enum**
+
+Chúng ta tạo enum bằng cách sử dụng từ khóa `enum`.
+
+```java
+enum Size {
+    SMALL, MEDIUM, LARGE
+}
+```
+
+Ở đây, chúng ta có một `enum` tên `Size`. Nó chứa các giá trị không đổi: `SMALL`, `MEDIUM` và `LARGE`. Các giá trị được phân tách bằng dấu phẩy.
+
+Ví dụ:
+
+```java
+// create enum
+enum Size {
+
+   // enum constants
+   SMALL, MEDIUM, LARGE
+}
+
+class Main {
+   public static void main(String[] args) {
+
+       // access enum
+       System.out.println(Size.SMALL); // SMALL
+       System.out.println(Size.MEDIUM); // MEDIUM
+       System.out.println(Size.LARGE); // LARGE
+   }
+}
+```
+
+Ở đây, chúng ta đã tạo một enum kiểu `Size`.
+
+Chúng ta sử dụng tên của enum cùng với toán tử `.` và giá trị hằng để truy cập hằng số enum. Tức là `Size.SMALL` sẽ truy cập hằng số `SMALL`.
+
+- **Biến enum**
+
+// enum of type Size
+enum Size {
+    SMALL, MEDIUM, LARGE
+}
+ 
+class Main {
+    public static void main(String[] args) {
+ 
+        // enum variable
+        Size pizzaSize;
+ 
+        // assign enum constant
+        pizzaSize = Size.SMALL;
+ 
+        System.out.println(pizzaSize); // SMALL
+    }
+}
+
+Trong ví dụ trên:
+
+```java
+Size pizzaSize;
+```
+
+`pizzaSize` là một biến kiểu enum `Size`.
+
+Chúng ta chỉ có thể gán các giá trị không đổi của enum `Size` cho `pizzaSize`. Điều này ngăn ta gán giá trị ngẫu nhiên cho biến `pizzaSize`.
+
+- **Lớp enum**
+
+```java
+enum Size {
+ 
+    // enum constants
+    SMALL, MEDIUM, LARGE;
+ 
+    // enum method
+    public String getSize() {
+ 
+        // this refers to current object
+        switch (this) {
+        case SMALL:
+            return "small";
+        case MEDIUM:
+            return "medium";
+        case LARGE:
+            return "large";
+        default:
+            return null;
+        }
+    }
+}
+ 
+class Main {
+    public static void main(String[] args) {
+ 
+        // call getSize()
+        System.out.println("Pizza size is " + Size.SMALL.getSize()); // Pizza size is small
+    }
+}
+```
+
+Chúng ta tạo một lớp enum tên là `Size` với ba hằng số. Java tự động tạo các đối tượng của mỗi hằng số enum.
+
+Bên trong lớp enum, chúng ta tạo một phương thức tên là `getSize()`. Phương thức sử dụng câu lệnh `switch` để trả về kích thước.
+
+Để ý lệnh gọi phương thức `getSize()`:
+
+```java
+Size.SMALL.getSize();
+```
+
+Ở đây, `Size.SMALL` là một đối tượng enum được sử dụng để gọi phương thức `getSize()`. Do đó, `this` bên trong phương thức tham chiếu đến đối tượng `Size.SMALL`.
+
+- **Các phương thức của lớp enum**
+
+| Phương thức | Mô tả |
+| :--- | :--- |
+| `ordinal()` | Trả về vị trí của hằng số enum |
+| `toString()` | Trả về dạng biểu diễn chuỗi của hằng số enum |
+| `values()` | Trả về một mảng kiểu enum chứa tất cả hằng số enum |
+
+**1. Phương thức ordinal()**
+
+```java
+enum Size {
+    SMALL, MEDIUM, LARGE;
+}
+class Main {
+    public static void main(String[] args) {
+ 
+        // returns the position of constants
+        System.out.println(Size.SMALL.ordinal()); // 0
+        System.out.println(Size.MEDIUM.ordinal()); // 1
+        System.out.println(Size.LARGE.ordinal()); // 2
+    }
+}
+```
+
+**2. Phương thức toString()**
+
+```java
+enum Size {
+    SMALL, MEDIUM, LARGE;
+}
+ 
+class Main {
+    public static void main(String[] args) {
+ 
+        String pizzaSize;
+ 
+        // string representation
+        pizzaSize = Size.MEDIUM.toString();
+ 
+        System.out.println(pizzaSize); // MEDIUM
+    }
+}
+```
+
+Chúng ta có thể gán giá trị của hằng số `MEDIUM` cho `pizzaSize` có kiểu `String` vì ta đã chuyển đổi nó thành kiểu `String` bằng phương thức `toString()`.
+
+**3. Phương thức value()**
+
+```java
+enum Size {
+    SMALL, MEDIUM, LARGE;
+}
+ 
+class Main {
+    public static void main(String[] args) {
+ 
+        // get enum constants in an array
+        Size[] constants = Size.values();
+ 
+        System.out.println("Array Elements:");
+        for (Size constant : constants) {
+            System.out.println(constant);
+        }
+    }
+}
+```
+
+```
+Array Elements:
+SMALL
+MEDIUM
+LARGE
+```
