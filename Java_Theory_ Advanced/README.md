@@ -18,6 +18,7 @@
   - [2. Annotation](#2-annotation)
   - [3. Lớp lồng nhau](#3-lớp-lồng-nhau)
   - [4. Lớp Generics](#4-lớp-generics)
+  - [5. Biểu thức Lambda](#5-biểu-thức-lambda)
 
 ## I. Java Collections
 Framework Collections cung cấp nhiều lớp và interface để triển khai những kiểu cấu trúc dữ liệu khác nhau.
@@ -937,3 +938,133 @@ Tương tự như `ArrayList`, các collection khác (`LinkedList`, `HashSet`, `
 ### 5. Biểu thức Lambda
 [:arrow_up: Mục lục](#mục-lục)
 
+- **1. Functional Interface**
+
+Nếu **interface chứa một và chỉ một phương thức trừu tượng** (phương thức không có phần thân) thì đó là một **functional interface**.
+
+```java
+interface AddNumber{  
+    void add();
+}
+```
+
+Ở đây, `interface AddNumber` chỉ có một phương thức trừu tượng `add()`. Do đó, nó là một `functional interface`.
+
+Chúng ta cũng có thể sử dụng chú thích `@FunctionalInterface` để biểu thị một `interface` là `functional interface`.
+
+```java
+@FunctionalInterface  
+interface AddNumber{  
+    void add(); 
+}
+```
+
+Chú thích `@FunctionalInterface` chỉ cho phép có một phương thức trừu tượng.
+
+- **2. Triển khai functional interface**
+
+Chương trình khi không có biểu thức `lambda`:
+
+```java
+@FunctionalInterface
+interface AddNumber {
+    void add();
+}
+ 
+class Main {
+    public static void main(String[] args) {
+ 
+        AddNumber ref = new AddNumber() {
+            public void add() {
+                System.out.println(4 + 5);
+            }
+        };
+        ref.add();    // 9
+    }
+}
+```
+Trong đó:
+
+```java
+AddNumber ref = new AddNumber() {
+      
+    public void add() {
+        
+        System.out.println(4 + 5);       
+    }
+};
+```
+
+Như bạn biết, chúng ta phải triển khai một interface để sử dụng nó.
+
+Code này tạo một lớp ẩn danh (lớp không có tên) triển khai interface `AddNumber`. Lớp này cung cấp triển khai của phương thức `add()`.
+
+```java
+ref.add();
+```
+
+Chúng ta có thể truy cập phương thức `add()` bằng cách sử dụng đối tượng `ref` của lớp ẩn danh.
+
+- **3. Biểu thức Lambda**
+
+Biểu thức lambda giống các phương thức thông thường nhưng khác ở chỗ nó không có tên.
+
+Ví dụ:
+
+```java
+public void add() {
+    System.out.println(4 + 5)
+}
+```
+Chúng ta có thể thay thế phương thức này bằng biểu thức lambda:
+
+```java
+() -> System.out.println(4 + 5);
+```
+
+*Cú pháp của biểu thức lambda là:*
+
+```java
+() -> lambda body
+```
+
+Trong đó: 
+
+- `->` - toán tử mũi tên hoặc toán tử lambda
+- `lambda body` - code bên trong phần thân phương thức được giữ bên trong lambda body
+
+- **4. Các loại Lambda Body**
+
+**Phần thân chứa một biểu thức đơn**
+
+```java
+() -> System.out.println("You Rock.");
+```
+
+**Phần thân chứa một khối lệnh**
+
+```java
+() -> {
+    int x = 1;
+    int y = 2;
+    System.out.println(x + y);
+};
+```
+
+Loại này được gọi là thân khối. Nó chứa khối lệnh bên trong dấu ngoặc nhọn `{}` và kết thúc bằng dấu chấm phẩy `;`.
+
+**Biểu thức Lambda với tham số**
+
+```java
+AddNumbers obj = (x, y) -> {
+  System.out.println(x + y);
+};
+```
+
+**Biểu thức Lambda với return**
+
+```java
+AddNumbers obj = (x, y) -> {
+  return x + y;
+};
+```
