@@ -5,6 +5,7 @@
   - [2. LinkedList](#2-linkedlist)
   - [3. HashSet](#3-hashset)
   - [4. HashMap](#4-hashmap)
+  - [5. Thuật toán về Java Collections](#5-thuật-toán-về-java-collections)
 - [II. Xử lý ngoại lệ](#ii-xử-lý-ngoại-lệ)
 - [III. Xử lý file](#iii-xử-lý-file)
   - [1. Tạo file](#1-tạo-file)
@@ -293,6 +294,7 @@ student2.putAll(student);
 Phương thức `putAll()` thêm tất cả các phần tử từ HashMap `student` vào `student2`.
 
 ### 5. Thuật toán về Java Collections
+[:arrow_up: Mục lục](#mục-lục)
 
 **Bước 1:** Nhập gói `java.util.Collections`.
 
