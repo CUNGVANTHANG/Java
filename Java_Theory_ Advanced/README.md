@@ -7,6 +7,10 @@
   - [4. HashMap](#4-hashmap)
   - [5. Thuật toán về Java Collections](#5-thuật-toán-về-java-collections)
 - [II. Xử lý ngoại lệ](#ii-xử-lý-ngoại-lệ)
+  - [1. Các kiểu ngoại lệ](#1-các-kiểu-ngoại-lệ)
+  - [2. Xử lý ngoại lệ try, catch](#2-xử-lý-ngoại-lệ-try-catch)
+  - [3. Khối finally trong Java](#3-khối-finally-trong-java)
+  - [4. Khai báo ngoại lệ throw, throws](#4-khai-báo-ngoại-lệ-throw-throws)
 - [III. Xử lý file](#iii-xử-lý-file)
   - [1. Tạo file](#1-tạo-file)
   - [2. Đọc file](#2-đọc-file)
@@ -322,7 +326,8 @@ ArrayList<Integer> numbers = new ArrayList<>();
 ## II. Xử lý ngoại lệ
 [:arrow_up: Mục lục](#mục-lục)
 
-**1. Các kiểu ngoại lệ:**
+### 1. Các kiểu ngoại lệ
+[:arrow_up: Mục lục](#mục-lục)
 
 - **ArithmeticException**
 
@@ -354,7 +359,8 @@ class Main {
 }
 ```
 
-**2. Xử lý ngoại lệ**
+### 2. Xử lý ngoại lệ try, catch
+[:arrow_up: Mục lục](#mục-lục)
 
 Xử lý ngoại lệ là quá trình phản hồi các ngoại lệ theo cách tùy chỉnh trong quá trình thực thi chương trình.
 
@@ -385,7 +391,8 @@ java.lang.ArithmeticException: / by zero
 
 Ở đây, chúng ta đã in `e` thay vì một thông báo tùy chỉnh. Nó chỉ đơn giản trả về ngoại lệ.
 
-**3. Khối finally trong Java**
+### 3. Khối finally trong Java
+[:arrow_up: Mục lục](#mục-lục)
 
 Câu lệnh `try` có thể chứa khối `finally` tùy chọn được thực thi bất kể ngoại lệ xảy ra hay không. Ví dụ:
 
@@ -422,6 +429,66 @@ Cách chương trình hoạt động:
 Nếu khối try không đưa ra bất kỳ ngoại lệ nào thì khối `catch` sẽ bị bỏ qua. Tuy nhiên, khối `finally` vẫn được thực thi.
 
 Khối `finally` được sử dụng để thực hiện các thao tác dọn dẹp cần được thực thi trong mọi trường hợp.
+
+### 4. Khai báo ngoại lệ throw, throws
+[:arrow_up: Mục lục](#mục-lục)
+
+Phân biệt từ khóa `throw` và `throws`
+
+| **STT** | **`throw`** | **`throws`** |
+| :--- | :--- | :--- |
+| 1 | Từ khóa throw trong java được sử dụng để ném ra một ngoại lệ rõ ràng. | Từ khóa throws trong java được sử dụng để khai báo một ngoại lệ. |
+| 2 | Ngoại lệ checked không được truyền ra nếu chỉ sử dụng từ khóa throw. | Ngoại lệ checked được truyền ra ngay cả khi chỉ sử dụng từ khóa throws |
+| 3 | Sau throw là một instance. | Sau throws là một hoặc nhiều class. |
+| 4 | Throw được sử dụng trong phương thức. | Throws được khai báo ngay sau dấu đóng ngoặc đơn của phương thức. |
+| 5 | Bạn không thể throw nhiều exceptions. | Bạn có thể khai báo nhiều exceptions, Ví dụ: public void method()throws IOException,SQLException. |
+
+*Ví dụ:*
+
+```java
+public class DevideByZeroException extends Exception{
+    float x;
+    float y;
+
+    DevideByZeroException(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public String getMessage() {
+        return "Exception / zero ("+x+"/"+y+")";
+    }
+}
+
+public class Calculator {
+    // Dùng để khai báo cho người dùng biết có khả năng gặp lỗi nên phải try...catch
+    public static float divide(float x, float y) throws DevideByZeroException {
+        if (y == 0) {
+            throw new DevideByZeroException(x, y);
+        }
+        return x/y;
+    }
+
+    public static float plus(float x, float y) {
+        return x + y;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        float sum;
+        try {
+            sum = Calculator.divide(5, 0); // Có khả năng gặp lỗi nên phải thêm try..catch
+            System.out.println("Sum: " + sum);
+        } catch(DevideByZeroException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+}
+
+```
 
 ## III. Xử lý file
 
