@@ -22,7 +22,7 @@ class BoundedBuffer {
         // Add item to buffer
         buffer[size] = item;
         size++;
-        System.out.println("Produced: " + item + " - Buffer: " + calculateBufferSum());
+        System.out.println("Produced: " + item + " \t\t|\t    Buffer: " + calculateBufferSum());
 
         mutex.release();
         full.release();
@@ -35,7 +35,7 @@ class BoundedBuffer {
         // Remove and return item from buffer
         int item = buffer[size - 1];
         size--;
-        System.out.println("Consumed: " + item + " - Buffer: " + calculateBufferSum());
+        System.out.println("Consumed: " + item + " \t\t|\t    Buffer: " + calculateBufferSum());
 
         mutex.release();
         empty.release();
@@ -101,6 +101,7 @@ public class BoundedBufferMain {
         Thread producerThread = new Thread(new Producer(buffer));
         Thread consumerThread = new Thread(new Consumer(buffer));
 
+        System.out.println("   State \t\t|\t      Buffer");
         producerThread.start();
         consumerThread.start();
     }

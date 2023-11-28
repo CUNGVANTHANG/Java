@@ -3,8 +3,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
-import data.Process;
-
 public class FCFS {
     public static void main(String[] args) {
         ArrayList<Process> processes = new ArrayList<>();
@@ -19,7 +17,7 @@ public class FCFS {
             System.out.println("Enter Burst time " + (i + 1) + ":");
             int burstTime = input.nextInt();
             processes.add(new Process(i + 1, arrivalTime, burstTime));
-        }        
+        }
 
         // Sort processes by arrival time
         Collections.sort(processes, Comparator.comparingInt(Process::getArrivalTime));
@@ -35,7 +33,7 @@ public class FCFS {
                 currentTime = process.getArrivalTime();
                 process.setResponseTime(0);
             } else {
-                process.setResponseTime(currentTime - process.getArrivalTime()); 
+                process.setResponseTime(currentTime - process.getArrivalTime());
 
             }
 
@@ -56,14 +54,13 @@ public class FCFS {
         System.out.println("PID\tAT\tBT\tCT\tTAT\tWT\tRT");
         for (Process process : processes) {
             System.out.println(
-                process.getPid() + "\t" +
-                process.getArrivalTime() + "\t" +
-                process.getBurstTime() + "\t" +
-                process.getCompletionTime() + "\t" +
-                process.getTurnaroundTime() + "\t" +
-                process.getWaitingTime() + "\t" +
-                process.getResponseTime()
-            );
+                    process.getPid() + "\t" +
+                            process.getArrivalTime() + "\t" +
+                            process.getBurstTime() + "\t" +
+                            process.getCompletionTime() + "\t" +
+                            process.getTurnaroundTime() + "\t" +
+                            process.getWaitingTime() + "\t" +
+                            process.getResponseTime());
         }
 
         // Calculate and print average waiting time and average turnaround time
