@@ -7,21 +7,32 @@ public class xac_dinh_mat_khau_manh {
         if (chain.length() < 6) {
             return "FALSE";
         }
-        int flag = 0;
+        boolean flag1 = false;
+        boolean flag2 = false;
+        boolean flag3 = false;
+        boolean flag4 = false;
+        String special_character = "!@#$%^&*()-+";
         for (int i = 0; i < chain.length(); i++) {
-            if (chain.contains("123456789")) {
-
+            if (Character.isDigit(chain.charAt(i))) {
+                flag1 = true;
+            } else if (Character.isUpperCase(chain.charAt(i))) {
+                flag2 = true;
+            } else if (Character.isLowerCase(chain.charAt(i))) {
+                flag3 = true;
             }
         }
-        return "FALSE";
+        for (char c : chain.toCharArray()) {
+            if (special_character.contains(String.valueOf(c))) {
+                flag4 = true;
+            }
+        }
+        return flag1 && flag2 && flag3 && flag4 ? "TRUE" : "FALSE";
     }
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
         String chain = input.nextLine();
-        // String check = "1 2 3 4 5 6 7 8 9 0";
-
+        System.err.println(checkPass(chain));
         input.close();
     }
 }

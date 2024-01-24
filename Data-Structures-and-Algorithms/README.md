@@ -3,6 +3,7 @@
 ## Mục lục
 - [DATA STRUCTURES AND ALGORITHMS](#data-structures-and-algorithms)
   - [Mục lục](#mục-lục)
+- [Phương thức được sử dụng](#phương-thức-được-sử-dụng)
   - [1. Đệ quy](#1-đệ-quy)
   - [2. Mảng và chuỗi ký tự](#2-mảng-và-chuỗi-ký-tự)
   - [3. Danh sách liên kết](#3-danh-sách-liên-kết)
@@ -17,6 +18,13 @@
   - [12. Giải thuật tham lam (Greedy Algorithms)](#12-giải-thuật-tham-lam-greedy-algorithms)
   - [13. Thuật toán quay lui](#13-thuật-toán-quay-lui)
   - [14. Quy hoạch động](#14-quy-hoạch-động)
+
+
+# Phương thức được sử dụng
+
+| Phương thức | Ý nghĩa | Cách dùng |
+| :---: | :---: | :---: | 
+
 
 ## 1. Đệ quy
 

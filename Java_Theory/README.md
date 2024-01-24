@@ -1,20 +1,22 @@
 # Java Theory (Java core & Java OOP basic)
 ## MỤC LỤC
-- [I. Kiến thức lập trình cơ bản](#i-kiến-thức-lập-trình-cơ-bản)
-  - [1. Xuất dữ liệu](#1-xuất-dữ-liệu)
-  - [2. Nhập dữ liệu đầu vào từ bàn phím](#2-nhập-dữ-liệu-đầu-vào-từ-bàn-phím)
-  - [3. Mảng](#3-mảng)
-  - [4. Vòng lặp for-each](#4-vòng-lặp-for-each)
-  - [5. Phương thức](#5-phương-thức)
-  - [6. Chuỗi](#6-chuỗi)
-- [II. Kiến thức lập trình hướng đối tượng OOP](#ii-kiến-thức-lập-trình-hướng-đối-tượng-oop)
-  - [1. Tính đóng gói](#1-tính-kế-thừa)
-  - [2. Tính trừu tượng](#2-tính-trừu-tượng)
-  - [3. Tính đa hình](#3-tính-đa-hình)
-  - [4. Tính đóng gói](#4-tính-đóng-gói)
-  - [5. Toán tử instanceof](#5-toán-tử-instanceof)
-  - [6. Từ khóa static](#6-từ-khóa-static)
-  - [7. Từ khóa final](#7-từ-khóa-final)
+- [Java Theory (Java core \& Java OOP basic)](#java-theory-java-core--java-oop-basic)
+  - [MỤC LỤC](#mục-lục)
+  - [I. Kiến thức lập trình cơ bản](#i-kiến-thức-lập-trình-cơ-bản)
+    - [1. Xuất dữ liệu](#1-xuất-dữ-liệu)
+    - [2. Nhập dữ liệu đầu vào từ bàn phím](#2-nhập-dữ-liệu-đầu-vào-từ-bàn-phím)
+    - [3. Mảng](#3-mảng)
+    - [4. Vòng lặp for-each](#4-vòng-lặp-for-each)
+    - [5. Phương thức](#5-phương-thức)
+    - [6. Chuỗi ký tự](#6-chuỗi-ký-tự)
+  - [II. Kiến thức lập trình hướng đối tượng OOP](#ii-kiến-thức-lập-trình-hướng-đối-tượng-oop)
+    - [1. Tính kế thừa](#1-tính-kế-thừa)
+    - [2. Tính trừu tượng](#2-tính-trừu-tượng)
+    - [3. Tính đa hình](#3-tính-đa-hình)
+    - [4. Tính đóng gói](#4-tính-đóng-gói)
+    - [5. Toán tử instanceof](#5-toán-tử-instanceof)
+    - [6. Từ khóa static](#6-từ-khóa-static)
+    - [7. Từ khóa final](#7-từ-khóa-final)
 
 ## I. Kiến thức lập trình cơ bản
 ### 1. Xuất dữ liệu
@@ -191,21 +193,51 @@ class Main {
     }
 }
 ```
-### 6. Chuỗi
+### 6. Chuỗi ký tự
 [:arrow_up: Mục lục](#mục-lục)
 
-| Phương thức | Mô tả |
-| :--- | :--- |
-| ```length()``` | tìm độ dài của chuỗi |
-| ```charAt()``` | lấy ký tự một chuỗi |
-| ```concat()``` | nối hai chuỗi |
-| ```equals()``` | so sánh hai chuỗi |
-| ```toLowerCase()``` | chuyển đổi chuỗi thành chữ thường |
-| ```toUpperCase()``` | chuyển đổi chuỗi thành chữ hoa |
+Các phương thức xử lý chuỗi trong Java thường là phương thức trả về giá trị.
+
+STT | Phương thức | Mô tả | Cách dùng |
+| :---:| :--- | :---: | :---:
+| 1 | ```length``` | tìm độ dài của chuỗi | `public int length()`
+| 2 | ```charAt``` | lấy ký tự một chuỗi | `public char charAt(int index)`
+| 3 | ```concat``` | nối hai chuỗi | `public String concat(String anotherString)` |
+| 4 | ```equals``` | so sánh hai chuỗi | `public boolean equals(Object anotherObject)` |
+| 5 | ```toLowerCase``` | chuyển đổi chuỗi thành chữ thường | `public String toLowerCase()` |
+| 6 | ```toUpperCase``` | chuyển đổi chuỗi thành chữ hoa | `public String toLowerCase()` | 
+| 7 | `compareTo` | so sánh các chuỗi cho trước với chuỗi hiện tại theo thứ tự từ điển | `public int compareTo(String anotherString)` |
+| 8 | `contains` | tìm kiếm chuỗi ký tự trong chuỗi này | `public boolean contains(CharSequence sequence)` |
+| 9 | `endsWith` | kiểm tra nếu chuỗi này kết thúc với hậu tố nhất định | `public boolean endsWith(String suffix)` |
+| 10 | `equalsIgnoreCase` | so sánh hai chuỗi không phân biệt chữ hoa và chữ thường | `public boolean equals(Object anotherObject)` | 
+| 11 | `format` | sử dụng giống hàm sprintf() trong C và printf() trong Java. | `public static String format(String format, Object... args)` |
+| 12 | `getBytes` | trả về mảng byte | `public byte[] getBytes()` |
+| 13 | `getChars` | sao chép nội dung của chuỗi thành mảng Char cụ thể | `public void getChars(int srcBeginIndex, int srcEndIndex, char[] destination, int dstBeginIndex)` | 
+| 14 | `indexOf` | trả về chỉ số của giá trị ký tự đã cho hoặc chuỗi con | `int indexOf(int ch)` |
+| 15 | `intern` | trả về chuỗi từ Pool chứa hằng số chuỗi khi nó được tạo bởi từ khóa new | `public String intern()` |
+| 16 | `isEmpty` | kiểm tra chuỗi rỗng | `public boolean isEmpty()` |
+| 17 | `join` | trả về một chuỗi được nối với nhau bởi dấu phân tách | `public static String join(CharSequence delimiter, CharSequence... elements)` |
+| 18 | `lastIndexOf` | trả vể chỉ số cuối của ký tự hoặc chuỗi con | `int lastIndexOf(int ch)` |
+| 19 | `replace` | thay thế tất cả các ký tự hoặc chuỗi cũ thành ký tự hoặc chuỗi mới | `public String replace(char oldChar, char newChar)` | 
+| 20 | `replaceAll` | thay thế tất cả các chuỗi ký tự phù hợp với regex (biểu thức chính quy) | `public String replaceAll(String regex, String replacement)` | 
+| 21 | `split` | tách chuỗi này theo biểu thức chính quy(regular expression) và trả về mảng chuỗi | `public String split(String regex)` |
+| 22 | `startsWith` | kiểm tra tiền tố của chuỗi có khớp với giá trị tiền tố đã nhập không | `public boolean startsWith(String prefix)` | 
+| 23 | `subString` | trả về chuỗi con của một chuỗi | `public String substring(int startIndex, int endIndex)` |
+| 24 | `toCharArray` | chuyển đổi chuỗi thành các mảng ký tự | `public char[] toCharArray()` |
+| 25 | `trim` | xóa khoảng trẳng ở đầu và cuối chuỗi | `public String trim()` |
+| 26 | `valueOf` | chuyển đối kiểu dữ liệu khác thành chuỗi | `public String valueOf(value)`
+
+> [Tham khảo tại đây](https://viettuts.vn/java-string)
 
 | Toán tử | Mô tả |
 | :--- | :--- |
 | ```+``` | nối hai chuỗi |
+
+**Phân biệt chuỗi với ký tự:**
+- `""` đại diện cho chuỗi
+- `''` đại diện cho ký tự
+
+**Chú ý:** *Nếu gán biến kiểu dữ liệu ký tự vào biến kiểu chuỗi sẽ sinh ra lỗi*
 
 ## II. Kiến thức lập trình hướng đối tượng OOP
 [:arrow_up: Mục lục](#mục-lục)
