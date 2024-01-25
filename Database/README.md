@@ -186,7 +186,7 @@ FROM person, car
 WHERE person.id = car.owner_id;
 ```
 
-### 2. Cấu trúc `JOIN ... ON`
+### 2. Cấu trúc kết hợp bảng `JOIN ... ON`
 
 Sử dụng `JOIN` để kết hợp các bảng
 
@@ -199,4 +199,34 @@ FROM person
 JOIN car
   ON person.id = car.owner_id;
 ```
+
+### 3. Trích xuất cột cụ thể `.`
+
+_Ví dụ:_
+
+```sql
+-- Hiển thị một vài cột trong kết quả đầu ra. Chúng ta chỉ muốn biết mẫu xe và tên chủ sở hữu. Vì có nhiều hơn một bảng, chúng ta đặt tên bảng trước tên cột và phân tách chúng bằng dấu chấm .
+SELECT
+  person.name,
+  car.model
+FROM person
+JOIN car
+  ON person.id = car.owner_id;
+```
+
+### 4. Đổi tên cột `AS`
+
+_Ví dụ:_
+
+```sql
+-- Đổi tên cột person.id và car.id thành person_id và car_id tương ứng.
+SELECT
+  person.id AS person_id,
+  car.id AS car_id
+FROM person
+JOIN car
+  ON person.id = car.owner_id;
+```
+
+_Chú ý:_ Tên mới chỉ là **bí danh**, nghĩa là nó là tên tạm thời và **không thay đổi tên thực tế trong cơ sở dữ liệu**. Nó chỉ ảnh hưởng đến cách cột được **hiển thị trong kết quả của truy vấn**. Kỹ thuật này thường được sử dụng khi có một vài cột có cùng tên từ các bảng khác nhau.
 
