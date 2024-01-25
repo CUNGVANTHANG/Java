@@ -3,7 +3,7 @@
 - [Database](#database)
   - [Mục lục](#mục-lục)
   - [I. Tổng quan về cơ sở dữ liệu](#i-tổng-quan-về-cơ-sở-dữ-liệu)
-  - [II. Truy vấn dữ liệu trong một bảng `SELECT ...,...,... FROM ... WHERE...`](#ii-truy-vấn-dữ-liệu-trong-một-bảng-select--from--where)
+  - [II. Truy vấn dữ liệu trong một bảng `SELECT ...,...,... FROM ... WHERE ...`](#ii-truy-vấn-dữ-liệu-trong-một-bảng-select--from--where)
     - [1. Toán tử `OR, AND, BETWEEN, NOT`](#1-toán-tử-or-and-between-not)
     - [2. Kết hợp nhiều điều kiện bằng cách sử dụng dấu ngoặc `()`](#2-kết-hợp-nhiều-điều-kiện-bằng-cách-sử-dụng-dấu-ngoặc-)
     - [3. Dữ liệu văn bản sử dụng dấu nháy đơn `''`](#3-dữ-liệu-văn-bản-sử-dụng-dấu-nháy-đơn-)
@@ -172,3 +172,31 @@ Nếu bạn đặt điều kiện trên một cột cụ thể, ví dụ như `A
 
 
 ## III. Truy vấn dữ liệu từ nhiều bảng `SELECT ...,...,... FROM ...,...,... WHERE ...`
+
+### 1. Tham chiếu đến các cột cụ thể `.`
+
+Bằng cách cung cấp tên của bảng và cột, được phân tách bằng dấu chấm `.`
+
+_Ví dụ:_
+
+```sql
+-- Dùng để xem xét các tổ hợp mà id trong person giống owner_id trong car
+SELECT *
+FROM person, car
+WHERE person.id = car.owner_id;
+```
+
+### 2. Cấu trúc `JOIN ... ON`
+
+Sử dụng `JOIN` để kết hợp các bảng
+
+_Ví dụ:_
+
+```sql
+-- Kết hợp bảng person và car, ta sử dụng JOIN giữa tên hai bảng. Ngoài ra, ta cũng có thể đặt điều kiện kết hợp các bảng bằng ON. Sau từ khóa ON chúng ta có thể đặt điều kiện để chỉ kết hợp những hàng có id trong person giống owner_id trong car.
+SELECT *
+FROM person
+JOIN car
+  ON person.id = car.owner_id;
+```
+
