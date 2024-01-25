@@ -172,8 +172,10 @@ Nếu bạn đặt điều kiện trên một cột cụ thể, ví dụ như `A
 
 
 ## III. Truy vấn dữ liệu từ nhiều bảng `SELECT ...,...,... FROM ...,...,... WHERE ...`
+[:arrow_up: Mục lục](#mục-lục)
 
 ### 1. Tham chiếu đến các cột cụ thể `.`
+[:arrow_up: Mục lục](#mục-lục)
 
 Bằng cách cung cấp tên của bảng và cột, được phân tách bằng dấu chấm `.`
 
@@ -187,10 +189,11 @@ WHERE person.id = car.owner_id;
 ```
 
 ### 2. Cấu trúc kết hợp bảng `JOIN ... ON`
+[:arrow_up: Mục lục](#mục-lục)
 
-Sử dụng `JOIN` để kết hợp các bảng
+Sử dụng `JOIN` để kết hợp các bảng, `ON` là điều kiện kết hợp bảng
 
-_Ví dụ:_
+_Ví dụ 1:_
 
 ```sql
 -- Kết hợp bảng person và car, ta sử dụng JOIN giữa tên hai bảng. Ngoài ra, ta cũng có thể đặt điều kiện kết hợp các bảng bằng ON. Sau từ khóa ON chúng ta có thể đặt điều kiện để chỉ kết hợp những hàng có id trong person giống owner_id trong car.
@@ -200,7 +203,23 @@ JOIN car
   ON person.id = car.owner_id;
 ```
 
+_Ví dụ 2:_
+
+| | |
+|:--: | :---: |
+| `SELECT * FROM phim JOIN dao_dien ON phim.ma_dao_dien = dao_dien.id;` | `SELECT * FROM dao_dien JOIN phim ON phim.ma_dao_dien = dao_dien.id;` |
+| ![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/768622a6-3b99-4cab-8bab-4ee01bd55fbf) | ![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/35d21419-d6c1-4ee3-a10d-a2db12d1bf67) |
+
+_Chú ý:_ 
+
+Bảng 1 `JOIN` Bảng 2 thì kết quả sẽ là `Bảng 1 | Bảng 2`
+
+Bảng 2 `JOIN` Bảng 1 thì kết quả sẽ là `Bảng 2 | Bảng 1`
+
+Kết hợp bảng sử dụng `JOIN`, bảng ban đầu sẽ nối với bảng tiếp theo ở **phía bên phải** bảng
+
 ### 3. Trích xuất cột cụ thể `.`
+[:arrow_up: Mục lục](#mục-lục)
 
 _Ví dụ:_
 
@@ -215,6 +234,7 @@ JOIN car
 ```
 
 ### 4. Đổi tên cột `AS`
+[:arrow_up: Mục lục](#mục-lục)
 
 _Ví dụ:_
 
@@ -230,3 +250,144 @@ JOIN car
 
 _Chú ý:_ Tên mới chỉ là **bí danh**, nghĩa là nó là tên tạm thời và **không thay đổi tên thực tế trong cơ sở dữ liệu**. Nó chỉ ảnh hưởng đến cách cột được **hiển thị trong kết quả của truy vấn**. Kỹ thuật này thường được sử dụng khi có một vài cột có cùng tên từ các bảng khác nhau.
 
+## IV. Kết hợp bảng và Nhóm kiểu dữ liệu
+[:arrow_up: Mục lục](#mục-lục)
+
+### 1. Sắp xếp các hàng `ORDER BY, ASC, DESC`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ 1:_
+
+```sql
+-- Sắp xếp các hàng theo customer_id
+SELECT *
+FROM orders
+ORDER BY customer_id;
+```
+
+_Ví dụ 2:_ Sắp xếp tăng dần
+
+```sql
+-- Sắp xếp các hàng tăng dần theo customer_id
+SELECT *
+FROM orders
+ORDER BY customer_id ASC;
+```
+
+_Ví dụ 3:_ Sắp xếp giảm dần
+
+```sql
+-- Sắp xếp các hàng giảm dần theo customer_id
+SELECT *
+FROM orders
+ORDER BY customer_id DESC;
+```
+
+_Ví dụ 4:_ Sắp xếp theo một vài cột
+
+```sql
+-- Sắp xếp theo customer_id theo thứ tự tăng dần (giá trị thấp nhất trước) và sau đó, với mỗi customer_id, các đơn hàng sẽ được sắp xếp theo total_sum theo thứ tự giảm dần (giá trị lớn nhất trước).
+SELECT *
+FROM order
+ORDER BY customer_id ASC, total_sum DESC;
+```
+
+_Ví dụ 5:_ Sắp xếp có điều kiện
+
+```sql
+-- Các đơn hàng được đặt bởi khách hàng có id là 100. Các đơn hàng sẽ được sắp xếp theo tổng số tiền - đơn hàng rẻ nhất sẽ xuất hiện đầu tiên và đắt nhất xuất hiện cuối cùng.
+SELECT *
+FROM orders
+WHERE customer_id = 100
+ORDER BY total_sum;
+```
+
+### 2. Lọc trùng dữ liệu `DISTINCT`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ 1:_ Nguyên nhân
+
+```sql
+-- Có nhiều dữ liệu trùng lặp
+SELECT nam_lam
+FROM nhan_vien;
+```
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/d4262e57-379f-4106-8218-345fd7a47aad)
+
+
+_Ví dụ 2:_ Khắc phục sử dụng `DISTINCT` để lọc dữ liệu **loại bỏ các bản ghi trùng lặp** và **hiện thị 1 lần**
+
+```sql
+SELECT DISTINCT nam_lam
+FROM nhan_vien;
+```
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/6931b737-b5a5-4236-9fb6-1990ee3a51a9)
+
+### 3. Đếm số hàng `COUNT()`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ 1:_ Đếm tất cả các hàng
+
+```sql
+-- Đếm tất cả các hàng
+SELECT COUNT(*)
+FROM orders;
+```
+
+_Ví dụ 2:_ Đếm số hàng không NULL
+
+```sql
+-- Nếu có một giá trị NULL trong cột customer_id, hàng đó sẽ không được tính vào kết quả.
+SELECT COUNT(customer_id)
+FROM orders;
+```
+
+_Ví dụ 3:_ Đếm giá trị duy nhất trong một cột sử dụng `DISTINCT`
+
+```sql
+-- Đếm các hàng chứa giá trị duy nhất trong cột customer_id. Nói cách khác, câu lệnh này cho chúng ta biết có bao nhiêu khách hàng khác nhau đã đặt hàng cho đến nay. Nếu một khách hàng đặt 5 đơn hàng, khách hàng đó sẽ chỉ được đếm một lần.
+SELECT COUNT(DISTINCT customer_id) AS distinct_customers
+FROM orders;
+```
+
+### 4. Giá trị lớn nhất, nhỏ nhất `MAX(), MIN()`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+-- Hàm MIN(total_sum) trả về giá trị nhỏ nhất trong cột total_sum. Như vậy, chúng ta có thể tìm ra đơn hàng rẻ nhất trong bảng. 
+SELECT MIN(total_sum)
+FROM orders;
+```
+
+### 5. Tính giá trị trung bình `AVG`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+-- Chúng ta sẽ nhận được giá trị trung bình của đơn hàng cho khách hàng có id 100.
+SELECT AVG(total_sum)
+FROM orders
+WHERE customer_id = 100;
+```
+
+### 6. Tính tổng giá trị `SUM`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+-- Tính tổng giá trị của tất cả các đơn hàng được đặt bởi khách hàng có id 100
+SELECT SUM(total_sum)
+FROM orders
+WHERE customer_id = 100;
+```
+
+### 7. Nhóm hàng cùng giá trị `GROUP BY`
+[:arrow_up: Mục lục](#mục-lục)
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/934e3abe-7973-419f-98a3-0cd607104fdf)
