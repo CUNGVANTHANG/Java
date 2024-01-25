@@ -390,4 +390,79 @@ WHERE customer_id = 100;
 ### 7. Nhóm hàng cùng giá trị `GROUP BY`
 [:arrow_up: Mục lục](#mục-lục)
 
+_Ví dụ 1:_ Kết hợp `GROUP BY` với `COUNT()`
+
+```sql
+-- Chúng ta nhập GROUP BY theo sau là tên cột (customer_id). GROUP BY sẽ nhóm tất cả các hàng có cùng giá trị trong cột được chỉ định lại với nhau.
+
+-- Trong ví dụ của chúng ta, tất cả các đơn được đặt bởi cùng một khách hàng sẽ được nhóm lại thành một hàng.
+-- Hàm COUNT(*) sau đó sẽ đếm số hàng cho khách hàng cụ thể đó.
+-- Kết quả, chúng ta sẽ có một bảng trong đó mỗi customer_id sẽ được hiển thị cùng với số lượng đơn hàng được đặt bởi khách hàng đó.
+SELECT
+  customer_id,
+  COUNT(*)
+FROM orders
+GROUP BY customer_id;
+```
+
 ![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/934e3abe-7973-419f-98a3-0cd607104fdf)
+
+_Ví dụ 2:_ Kết hợp `GROUP BY` với `MAX(), MIN()`
+
+```sql
+-- Tìm đơn hàng có giá trị cao nhất cho mỗi khách hàng.
+SELECT
+  customer_id,
+  MAX(total_sum)
+FROM orders
+GROUP BY customer_id;
+```
+
+_Ví dụ 3:_ Kết hợp `GROUP BY` với `AVG`
+
+```sql
+-- Tính giá trị đơn hàng trung bình cho mỗi khách hàng, nhưng chỉ với các đơn hàng trong năm 2019.
+SELECT
+  customer_id,
+  AVG(total_sum)
+FROM orders
+WHERE order_date >= '2019-01-01'
+  AND order_date < '2020-01-01'
+GROUP BY custome
+```
+
+_Ví dụ 4:_ Nhóm các hàng dựa trên nhiều cột
+
+```sql
+SELECT
+  customer_id,
+  order_date,
+  SUM(total_sum)
+FROM orders
+GROUP BY customer_id, order_date;
+```
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/d9f6071e-e190-40f4-af34-60a5ab73dc87)
+
+### 8. Lọc nhóm dữ liệu `GROUP BY, HAVING`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+-- Sử dụng từ khóa HAVING và sau đó cung cấp điều kiện lọc kết quả.
+-- Trong trường hợp này, ta chỉ muốn hiển thị những khách hàng có tổng giá trị đơn hàng theo ngày lớn hơn $2.000.
+SELECT
+  customer_id,
+  order_date,
+  SUM(total_sum)
+FROM orders
+GROUP BY customer_id, order_date
+HAVING SUM(total_sum) > 2000;
+```
+
+_Chú ý:_ 
+
+- Không thể đặt `WHERE` trước `FROM`. Tương tự, `HAVING` luôn phải đứng sau `GROUP BY`
+- `WHERE` được sử dụng để lọc dữ liệu trước khi nhóm và tổng hợp thông tin, trong khi `HAVING` được sử dụng để lọc dữ liệu sau khi đã được nhóm và tổng hợp thông tin.
+
