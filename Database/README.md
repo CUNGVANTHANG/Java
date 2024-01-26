@@ -353,7 +353,7 @@ SELECT nam_lam
 FROM nhan_vien;
 ```
 
-<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/d4262e57-379f-4106-8218-345fd7a47aad" width=400px>
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/d4262e57-379f-4106-8218-345fd7a47aad">
 
 
 _Ví dụ 2:_ Khắc phục sử dụng `DISTINCT` để lọc dữ liệu **loại bỏ các bản ghi trùng lặp** và **hiện thị 1 lần**
@@ -363,7 +363,7 @@ SELECT DISTINCT nam_lam
 FROM nhan_vien;
 ```
 
-<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/6931b737-b5a5-4236-9fb6-1990ee3a51a9" width=400px>
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/6931b737-b5a5-4236-9fb6-1990ee3a51a9">
 
 ### 3. Đếm số hàng `COUNT()`
 [:arrow_up: Mục lục](#mục-lục)
@@ -654,3 +654,34 @@ JOIN person AS mother
 Nhờ có bí danh, máy chủ cơ sở dữ liệu sẽ có thể sử dụng cùng một bảng `person` hai lần - lần đầu tiên để tìm kiếm trẻ và lần thứ hai để tìm kiếm mẹ của trẻ.
 
 *Ví dụ 2:*
+
+_Bảng `sinh_vien`:_
+
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/bfdb1a5c-207c-4fac-82bf-e1ebf2154f36">
+
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/f4a3638c-5c73-4403-b7d0-834e3cab43f5">
+
+_Bảng `phong`:_
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/262e0a16-2b24-4e10-9bb2-0115bcea540e)
+
+```sql
+-- Phòng có 2 giường dành cho 2 sinh viên, hiển thị cột sinh_vien_1, sinh_vien_2, số phòng 
+SELECT 
+  s1.ten AS sinh_vien_1,
+  s2.ten AS sinh_vien_2,
+  so_phong
+FROM sinh_vien AS s1
+INNER JOIN sinh_vien s2
+  ON s1.ma_phong = s2.ma_phong
+INNER JOIN phong
+  ON s1.ma_phong = phong.id
+WHERE giuong = 2
+  AND s1.ten < s2.ten;
+```
+
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/450009ea-fc9e-4572-8f22-dae38b5119f6">
+
+## VI. Truy vấn con
+[:arrow_up: Mục lục](#mục-lục)
+
