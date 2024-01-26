@@ -3,7 +3,7 @@
 - [Database](#database)
   - [Mục lục](#mục-lục)
   - [I. Tổng quan về cơ sở dữ liệu](#i-tổng-quan-về-cơ-sở-dữ-liệu)
-  - [II. Truy vấn dữ liệu trong một bảng `SELECT ...,...,... FROM ... WHERE ...`](#ii-truy-vấn-dữ-liệu-trong-một-bảng-select--from--where)
+  - [II. Truy vấn dữ liệu trong một bảng `SELECT ...,...,... FROM ... WHERE...`](#ii-truy-vấn-dữ-liệu-trong-một-bảng-select--from--where)
     - [1. Toán tử `OR, AND, BETWEEN, NOT`](#1-toán-tử-or-and-between-not)
     - [2. Kết hợp nhiều điều kiện bằng cách sử dụng dấu ngoặc `()`](#2-kết-hợp-nhiều-điều-kiện-bằng-cách-sử-dụng-dấu-ngoặc-)
     - [3. Dữ liệu văn bản sử dụng dấu nháy đơn `''`](#3-dữ-liệu-văn-bản-sử-dụng-dấu-nháy-đơn-)
@@ -11,6 +11,26 @@
     - [5. Ký hiệu gạch dưới `_, LIKE`](#5-ký-hiệu-gạch-dưới-_-like)
     - [6. Tìm các giá trị `IS NOT NULL, IS NULL`](#6-tìm-các-giá-trị-is-not-null-is-null)
   - [III. Truy vấn dữ liệu từ nhiều bảng `SELECT ...,...,... FROM ...,...,... WHERE ...`](#iii-truy-vấn-dữ-liệu-từ-nhiều-bảng-select--from--where-)
+    - [1. Tham chiếu đến các cột cụ thể `.`](#1-tham-chiếu-đến-các-cột-cụ-thể-)
+    - [2. Cấu trúc kết hợp bảng `JOIN ... ON`](#2-cấu-trúc-kết-hợp-bảng-join--on)
+    - [3. Trích xuất cột cụ thể `.`](#3-trích-xuất-cột-cụ-thể-)
+    - [4. Đổi tên cột, tên bảng `AS`](#4-đổi-tên-cột-tên-bảng-as)
+  - [IV. Kết hợp bảng và Nhóm kiểu dữ liệu](#iv-kết-hợp-bảng-và-nhóm-kiểu-dữ-liệu)
+    - [1. Sắp xếp các hàng `ORDER BY, ASC, DESC`](#1-sắp-xếp-các-hàng-order-by-asc-desc)
+    - [2. Lọc trùng dữ liệu `DISTINCT`](#2-lọc-trùng-dữ-liệu-distinct)
+    - [3. Đếm số hàng `COUNT()`](#3-đếm-số-hàng-count)
+    - [4. Giá trị lớn nhất, nhỏ nhất `MAX(), MIN()`](#4-giá-trị-lớn-nhất-nhỏ-nhất-max-min)
+    - [5. Tính giá trị trung bình `AVG`](#5-tính-giá-trị-trung-bình-avg)
+    - [6. Tính tổng giá trị `SUM`](#6-tính-tổng-giá-trị-sum)
+    - [7. Nhóm hàng cùng giá trị `GROUP BY`](#7-nhóm-hàng-cùng-giá-trị-group-by)
+    - [8. Lọc nhóm dữ liệu `GROUP BY, HAVING`](#8-lọc-nhóm-dữ-liệu-group-by-having)
+  - [V. Join nâng cao](#v-join-nâng-cao)
+    - [1. Chỉ trả về giá trị hai bảng khớp với nhau `INNER JOIN`](#1-chỉ-trả-về-giá-trị-hai-bảng-khớp-với-nhau-inner-join)
+    - [2. Trả về tất cả giá trị bảng bên trái khớp với bảng bên phải `LEFT JOIN`](#2-trả-về-tất-cả-giá-trị-bảng-bên-trái-khớp-với-bảng-bên-phải-left-join)
+    - [3. Trả về tất cả giá trị bảng bên phải khớp với bảng bên trái `RIGHT JOIN`](#3-trả-về-tất-cả-giá-trị-bảng-bên-phải-khớp-với-bảng-bên-trái-right-join)
+    - [4. Trả về tất cả giá trị hai bảng khớp nhau `FULL JOIN`](#4-trả-về-tất-cả-giá-trị-hai-bảng-khớp-nhau-full-join)
+    - [5. Kết hợp bảng không sử dụng điều kiện `NATURAL JOIN`](#5-kết-hợp-bảng-không-sử-dụng-điều-kiện-natural-join)
+    - [6. Nối bảng với chính nó bằng bí danh](#6-nối-bảng-với-chính-nó-bằng-bí-danh)
 
 ## I. Tổng quan về cơ sở dữ liệu
 [:arrow_up: Mục lục](#mục-lục)
@@ -333,7 +353,7 @@ SELECT nam_lam
 FROM nhan_vien;
 ```
 
-![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/d4262e57-379f-4106-8218-345fd7a47aad)
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/d4262e57-379f-4106-8218-345fd7a47aad" width=400px>
 
 
 _Ví dụ 2:_ Khắc phục sử dụng `DISTINCT` để lọc dữ liệu **loại bỏ các bản ghi trùng lặp** và **hiện thị 1 lần**
@@ -343,7 +363,7 @@ SELECT DISTINCT nam_lam
 FROM nhan_vien;
 ```
 
-![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/6931b737-b5a5-4236-9fb6-1990ee3a51a9)
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/6931b737-b5a5-4236-9fb6-1990ee3a51a9" width=400px>
 
 ### 3. Đếm số hàng `COUNT()`
 [:arrow_up: Mục lục](#mục-lục)
@@ -492,7 +512,7 @@ _Chú ý:_
 ### 1. Chỉ trả về giá trị hai bảng khớp với nhau `INNER JOIN`
 [:arrow_up: Mục lục](#mục-lục)
 
-![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/04c19cb2-765d-471b-a928-de1430c92aa5)
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/04c19cb2-765d-471b-a928-de1430c92aa5" width=300px>
 
 Tên đầy đủ của `JOIN` là `INNER JOIN`
 
@@ -515,12 +535,12 @@ INNER JOIN thiet_bi
 
 ![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/ca418bfc-ac2d-4ec5-878c-ed37368c930e)
 
-Các hàng màu xanh là kết quả của `INNER JOIN`. Thiết bị có giá trị `NULL` trong cột room_id(các hàng màu vàng) không được hiển thị trong kết quả của `INNER JOIN`.
+Các hàng <span style="color: green;">**màu xanh**</span> là kết quả của `INNER JOIN`. Thiết bị có giá trị `NULL` trong cột `room_id`(các hàng <span style="color: yellow;">**màu vàng**</span>) không được hiển thị trong kết quả của `INNER JOIN`.
 
 ### 2. Trả về tất cả giá trị bảng bên trái khớp với bảng bên phải `LEFT JOIN`
 [:arrow_up: Mục lục](#mục-lục)
 
-![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/8f07b255-8feb-4904-b389-c4b96033772d)
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/8f07b255-8feb-4904-b389-c4b96033772d" width=300px>
 
 `LEFT JOIN` tên đầy đủ là `LEFT OUTER JOIN`
 
@@ -539,12 +559,12 @@ LEFT JOIN person
 
 ![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/9c138f33-88ac-4d66-ab6b-cb609f3c4331)
 
-`LEFT JOIN` trả về tất cả các hàng trong bảng trên. Các hàng màu xanh được trả về bởi `INNER JOIN`. Các hàng màu vàng được thêm vào bởi `LEFT JOIN`: tuy không có người sở hữu khớp với các xe màu vàng nhưng `LEFT JOIN` vẫn trả về chúng.
+`LEFT JOIN` trả về tất cả các hàng trong bảng trên. Các hàng <span style="color: green;">**màu xanh**</span> được trả về bởi `INNER JOIN`. Các hàng <span style="color: yellow;">**màu vàng**</span> được thêm vào bởi `LEFT JOIN`: tuy không có người sở hữu khớp với các xe <span style="color: yellow;">**màu vàng**</span>  nhưng `LEFT JOIN` vẫn trả về chúng.
 
 ### 3. Trả về tất cả giá trị bảng bên phải khớp với bảng bên trái `RIGHT JOIN`
 [:arrow_up: Mục lục](#mục-lục)
 
-![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/9d24b264-1f1e-4ccf-b5c7-c81a14dcaa1e)
+<img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/9d24b264-1f1e-4ccf-b5c7-c81a14dcaa1e" width=300px>
 
 `RIGHT JOIN` tên đầy đủ là `RIGHT OUTER JOIN`
 
@@ -561,7 +581,7 @@ RIGHT JOIN person
 
 ![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/3473149a-cd26-47b9-9522-5aebfe348c5c)
 
-`RIGHT JOIN` trả về tất cả các hàng trong bảng trên. Các hàng màu xanh được trả về `INNER JOIN`. Các hàng màu vàng được thêm vào bởi `RIGHT JOIN`.
+`RIGHT JOIN` trả về tất cả các hàng trong bảng trên. Các hàng <span style="color: green;">**màu xanh**</span> được trả về `INNER JOIN`. Các hàng <span style="color: yellow;">**màu vàng**</span> được thêm vào bởi `RIGHT JOIN`.
 
 _Chú ý:_ Thứ tự các bảng trong `LEFT JOIN` và `RIGHT JOIN` rất quan trọng. Nói cách khác, `car RIGHT JOIN person` giống như `person LEFT JOIN car`
 
@@ -583,11 +603,11 @@ FULL JOIN person
 
 ![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/88442ce7-6f78-4f16-b331-8b4e98af7b48)
 
-Các hàng màu vàng được trả về bởi `INNER JOIN`.
+Các hàng <span style="color: yellow;">**màu vàng**</span> được trả về bởi `INNER JOIN`.
 
-Các hàng màu xanh sẽ được thêm vào bởi `LEFT JOIN`
+Các hàng <span style="color: green;">**màu xanh**</span> sẽ được thêm vào bởi `LEFT JOIN`
 
-Các hàng màu hồng sẽ được thêm vào bởi `RIGHT JOIN`.
+Các hàng <span style="color: pink;">**màu hồng**</span> sẽ được thêm vào bởi `RIGHT JOIN`.
 
 `FULL JOIN` trả về tất cả các hàng từ bảng trên.
 
@@ -618,7 +638,7 @@ _Chú ý:_ Tuy nhiên, `NATURAL JOIN` không được sử dụng rộng rãi tr
 ### 6. Nối bảng với chính nó bằng bí danh
 [:arrow_up: Mục lục](#mục-lục)
 
-_Ví dụ:_
+_Ví dụ 1:_
 
 ```sql
 -- Chúng ta muốn đưa thông tin về mẹ và trẻ vào một cơ sở dữ liệu.
@@ -632,3 +652,5 @@ JOIN person AS mother
 ```
 
 Nhờ có bí danh, máy chủ cơ sở dữ liệu sẽ có thể sử dụng cùng một bảng `person` hai lần - lần đầu tiên để tìm kiếm trẻ và lần thứ hai để tìm kiếm mẹ của trẻ.
+
+*Ví dụ 2:*
