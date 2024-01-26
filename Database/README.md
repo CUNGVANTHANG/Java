@@ -237,10 +237,10 @@ JOIN car
   ON person.id = car.owner_id;
 ```
 
-### 4. Đổi tên cột `AS`
+### 4. Đổi tên cột, tên bảng `AS`
 [:arrow_up: Mục lục](#mục-lục)
 
-_Ví dụ:_
+_Ví dụ 1:_ Đổi tên cột
 
 ```sql
 -- Đổi tên cột person.id và car.id thành person_id và car_id tương ứng.
@@ -253,6 +253,22 @@ JOIN car
 ```
 
 _Chú ý:_ Tên mới chỉ là **bí danh**, nghĩa là nó là tên tạm thời và **không thay đổi tên thực tế trong cơ sở dữ liệu**. Nó chỉ ảnh hưởng đến cách cột được **hiển thị trong kết quả của truy vấn**. Kỹ thuật này thường được sử dụng khi có một vài cột có cùng tên từ các bảng khác nhau.
+
+_Ví dụ 2:_ Đổi tên bảng
+
+```sql
+-- Đổi tên bảng person thành p, tên car thành c
+SELECT
+  p.id,
+  p.name,
+  p.year,
+  c.id,
+  c.name,
+  c.year
+FROM person AS p
+JOIN car AS c
+  ON p.id = c.owner_id;
+```
 
 ## IV. Kết hợp bảng và Nhóm kiểu dữ liệu
 [:arrow_up: Mục lục](#mục-lục)
@@ -575,3 +591,44 @@ Các hàng màu hồng sẽ được thêm vào bởi `RIGHT JOIN`.
 
 `FULL JOIN` trả về tất cả các hàng từ bảng trên.
 
+### 5. Kết hợp bảng không sử dụng điều kiện `NATURAL JOIN`
+[:arrow_up: Mục lục](#mục-lục)
+
+`NATURAL JOIN` không yêu cầu nhập tên cột vì nó luôn kết hợp hai bảng dựa trên các cột có cùng tên.
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM sinh_vien
+NATURAL JOIN phong;
+```
+
+cho kết quả giống
+
+```sql
+SELECT *
+FROM sinh_vien
+JOIN phong
+  ON sinh_vien.id = phong.id;
+```
+
+_Chú ý:_ Tuy nhiên, `NATURAL JOIN` không được sử dụng rộng rãi trong thực tế, do nó có thể dẫn đến những vấn đề khi tên cột không đồng nhất hoặc khi có nhiều hơn một cột có cùng tên trong các bảng. Thay vào đó, người ta thường sử dụng các phép toán join khác, chẳng hạn như `INNER JOIN` hoặc `LEFT JOIN`, và xác định rõ các điều kiện kết nối (`ON`) để tránh những vấn đề này.
+
+### 6. Nối bảng với chính nó bằng bí danh
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+-- Chúng ta muốn đưa thông tin về mẹ và trẻ vào một cơ sở dữ liệu.
+-- Tại một thời điểm cụ thể, chúng ta cũng muốn hiển thị thông tin về trẻ cùng với mẹ bằng cách sử dụng JOIN.
+-- Giả sử Lưu trữ thông tin về trẻ và mẹ trong cùng bảng person.
+-- Mỗi hàng đều có cột mother_id. Cột này chứa ID của một hàng khác - hàng của mẹ.
+SELECT *
+FROM person AS child
+JOIN person AS mother
+  ON child.mother_id = mother.id;
+```
+
+Nhờ có bí danh, máy chủ cơ sở dữ liệu sẽ có thể sử dụng cùng một bảng `person` hai lần - lần đầu tiên để tìm kiếm trẻ và lần thứ hai để tìm kiếm mẹ của trẻ.
