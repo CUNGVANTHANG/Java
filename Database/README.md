@@ -212,6 +212,10 @@ _Ví dụ 2:_
 
 _Chú ý:_ 
 
+- Bảng 1: Bảng đầu tiên trong truy vấn
+
+- Bảng 2: Bảng thứ hai trong truy vấn
+
 Bảng 1 `JOIN` Bảng 2 thì kết quả sẽ là `Bảng 1 | Bảng 2`
 
 Bảng 2 `JOIN` Bảng 1 thì kết quả sẽ là `Bảng 2 | Bảng 1`
@@ -465,4 +469,109 @@ _Chú ý:_
 
 - Không thể đặt `WHERE` trước `FROM`. Tương tự, `HAVING` luôn phải đứng sau `GROUP BY`
 - `WHERE` được sử dụng để lọc dữ liệu trước khi nhóm và tổng hợp thông tin, trong khi `HAVING` được sử dụng để lọc dữ liệu sau khi đã được nhóm và tổng hợp thông tin.
+
+## V. Join nâng cao
+[:arrow_up: Mục lục](#mục-lục)
+
+### 1. Chỉ trả về giá trị hai bảng khớp với nhau `INNER JOIN`
+[:arrow_up: Mục lục](#mục-lục)
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/04c19cb2-765d-471b-a928-de1430c92aa5)
+
+Tên đầy đủ của `JOIN` là `INNER JOIN`
+
+_Ví dụ:_
+
+```sql
+SELECT 
+  phong.id AS ma_phong,
+  so_phong,
+  giuong,
+  tang,
+  thiet_bi.id AS ma_thiet_bi,
+  ten 
+FROM phong
+INNER JOIN thiet_bi
+  ON ma_phong = phong.id;
+```
+
+`INNER JOIN` (hoặc `JOIN`) **chỉ hiển thị các hàng từ hai bảng có các giá trị trong cột khớp với nhau**. Nói cách khác, bạn chỉ có thể thấy những thiết bị có trong phòng được chỉ định và ngược lại. **Thiết bị không có trong phòng không được hiển thị trong kết quả. Hãy xem bảng sau**:
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/ca418bfc-ac2d-4ec5-878c-ed37368c930e)
+
+Các hàng màu xanh là kết quả của `INNER JOIN`. Thiết bị có giá trị `NULL` trong cột room_id(các hàng màu vàng) không được hiển thị trong kết quả của `INNER JOIN`.
+
+### 2. Trả về tất cả giá trị bảng bên trái khớp với bảng bên phải `LEFT JOIN`
+[:arrow_up: Mục lục](#mục-lục)
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/8f07b255-8feb-4904-b389-c4b96033772d)
+
+`LEFT JOIN` tên đầy đủ là `LEFT OUTER JOIN`
+
+`LEFT JOIN` hoạt động theo cách sau: nó **trả về tất cả** các hàng từ **bảng bên trái** (bảng đầu tiên trong truy vấn) cộng với tất cả các hàng khớp từ **bảng bên phải** (bảng thứ hai trong truy vấn).
+
+Nếu không có giá trị chung trong cột kết hợp, các cột từ bảng bên phải sẽ chứa giá trị `NULL`.
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM car
+LEFT JOIN person
+  ON car.owner_id = person.id;
+```
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/9c138f33-88ac-4d66-ab6b-cb609f3c4331)
+
+`LEFT JOIN` trả về tất cả các hàng trong bảng trên. Các hàng màu xanh được trả về bởi `INNER JOIN`. Các hàng màu vàng được thêm vào bởi `LEFT JOIN`: tuy không có người sở hữu khớp với các xe màu vàng nhưng `LEFT JOIN` vẫn trả về chúng.
+
+### 3. Trả về tất cả giá trị bảng bên phải khớp với bảng bên trái `RIGHT JOIN`
+[:arrow_up: Mục lục](#mục-lục)
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/9d24b264-1f1e-4ccf-b5c7-c81a14dcaa1e)
+
+`RIGHT JOIN` tên đầy đủ là `RIGHT OUTER JOIN`
+
+`RIGHT JOIN` hoạt động như sau: nó **trả về tất cả** các hàng từ **bảng bên phải** (bảng thứ hai trong câu truy vấn) cộng với tất cả các hàng khớp từ **bảng bên trái** (bảng đầu tiên trong câu truy vấn).
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM car
+RIGHT JOIN person
+  ON car.owner_id = person.id;
+```
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/3473149a-cd26-47b9-9522-5aebfe348c5c)
+
+`RIGHT JOIN` trả về tất cả các hàng trong bảng trên. Các hàng màu xanh được trả về `INNER JOIN`. Các hàng màu vàng được thêm vào bởi `RIGHT JOIN`.
+
+_Chú ý:_ Thứ tự các bảng trong `LEFT JOIN` và `RIGHT JOIN` rất quan trọng. Nói cách khác, `car RIGHT JOIN person` giống như `person LEFT JOIN car`
+
+### 4. Trả về tất cả giá trị hai bảng khớp nhau `FULL JOIN`
+[:arrow_up: Mục lục](#mục-lục)
+
+Tên đầy đủ `FULL JOIN` là `FULL OUTER JOIN`
+
+`FULL JOIN` trả về tất cả các hàng từ cả hai bảng và kết hợp các hàng có giá trị khớp nhau. Nói cách khác, `FULL JOIN` là kết hợp của `LEFT JOIN` và `RIGHT JOIN`.
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM car
+FULL JOIN person
+  ON car.owner_id = person.id;
+```
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/88442ce7-6f78-4f16-b331-8b4e98af7b48)
+
+Các hàng màu vàng được trả về bởi `INNER JOIN`.
+
+Các hàng màu xanh sẽ được thêm vào bởi `LEFT JOIN`
+
+Các hàng màu hồng sẽ được thêm vào bởi `RIGHT JOIN`.
+
+`FULL JOIN` trả về tất cả các hàng từ bảng trên.
 
