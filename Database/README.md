@@ -684,4 +684,113 @@ WHERE giuong = 2
 
 ## VI. Truy vấn con
 [:arrow_up: Mục lục](#mục-lục)
+### 1. Truy vấn con `()`
+[:arrow_up: Mục lục](#mục-lục)
 
+_Ví dụ:_ Muốn tìm các thành phố có điểm xếp hạng bằng thành phố Paris.
+
+```sql
+SELECT danh_gia
+FROM thanh_pho
+WHERE ten = 'Paris';
+```
+
+kết quả của truy vấn trên trong ghi chú (điểm xếp hạng là 5) và sau đó tạo một truy vấn mới:
+
+```sql
+SELECT ten
+FROM thanh_pho
+WHERE danh_gia = 5;
+```
+
+**Truy vấn con** được sử dụng để hỗ trợ các trường hợp trên. Chúng là **truy vấn trong truy vấn** và luôn được đặt trong dấu ngoặc đơn `()`.
+
+```sql
+SELECT ten
+FROM thanh_pho
+WHERE danh_gia = (
+  SELECT
+    danh_gia
+  FROM thanh_pho
+  WHERE ten = 'Paris'
+);
+```
+
+_Chú ý:_ Các ví dụ trên truy vấn con trả về một giá trị. Nếu trả về **hai hay nhiều giá trị (tập hợp)** thì ta phải sử dụng toán tử ở dưới đây
+
+### 2. So sánh giá trị với giá trị trong tập hợp `IN`
+[:arrow_up: Mục lục](#mục-lục)
+
+Ở phần 1, truy vấn con chỉ trả về một giá trị duy nhất (như 5 hoặc 15.28). Nếu chúng ta muốn trả về nhiều giá trị hơn thì cần làm thế nào?
+
+```sql
+SELECT *
+FROM thanh_pho
+WHERE danh_gia IN (3, 4, 5);
+```
+
+Sử dụng toán tử `IN`. Nó cho phép ta chỉ định một vài giá trị trong mệnh đề `WHERE` thay vì chỉ một giá trị.
+
+Trong ví dụ này, ta chỉ muốn hiển thị các thành phố có điểm xếp hạng cao, tuy nhiên, điểm xếp hạng không cần phải là cao nhất - bất kỳ thành phố nào có điểm xếp hạng là 3 `OR` 4 `OR` 5 đều phù hợp. Đó chính là ý nghĩa của `IN (3,4,5)`
+
+_Ví dụ:_ 
+
+```sql
+SELECT gia
+FROM chuyen_di
+WHERE ma_thanh_pho IN (
+  SELECT id
+  FROM thanh_pho
+  WHERE dan_so < 2000000
+);
+```
+
+Trong truy vấn con, ta tìm ID của tất cả các thành phố có dân số dưới 2 triệu người. Tiếp theo, ta sử dụng những ID này dưới dạng các giá trị cho toán tử `IN`.
+
+Bằng cách này, chúng ta có thể tìm chi phí của những chuyến tham quan đến các thành phố có dân số dưới 2 triệu người.
+
+### 3. So sánh giá trị với tất cả giá trị trong tập hợp `ALL`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM quoc_gia
+WHERE dien_tich > ALL (
+  SELECT dien_tich
+  FROM thanh_pho
+);
+```
+
+`> ALL` có nghĩa là "lớn hơn tất cả các giá trị trong dấu ngoặc đơn".
+
+Kết quả trả về tất cả các quốc gia có **diện tích lớn hơn các thành phố trong dấu ngoặc đơn**. Ví dụ, Liechtenstein là một quốc gia rất nhỏ. Quốc gia này có diện tích lớn hơn một số thành phố (ví dụ như Lyon), nhưng diện tích nhỏ hơn các thành phố còn lại (ví dụ như Berlin), vì vậy Liechtenstein sẽ không được hiển thị trong kết quả.
+
+_Chú ý:_ Các toán tử logic khác: `= ALL`, `!= ALL`, `< ALL`, `<= ALL`, `>= ALL`.
+
+### 4. So sánh giá trị với ít nhất một giá trị trong tập hợp `ANY`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM chuyen_di
+WHERE gia < ANY (
+  SELECT gia
+  FROM goi_leo_nui
+  WHERE ma_ngon_nui = 1
+);
+```
+
+`< ANY` có nghĩa là "nhỏ hơn ít nhất một giá trị trong dấu ngoặc đơn"
+
+Tìm các chuyến tham quan đến các thành phố có chi phí rẻ hơn chi phí của bất kỳ chuyến leo núi nào đến ngọn núi có id 1 (Mont Blanc).
+
+Có hai chuyến leo núi đến Mont Blanc: một chuyến có giá 1000 và một chuyến có giá 300. Nếu chúng ta tìm thấy một chuyến tham quan đến thành phố có chi phí rẻ hơn bất kỳ một trong những giá trị này, chúng ta hiển thị nó trong kết quả.
+
+_Chú ý:_ Toán tử logic khác: `= ANY`, `!= ANY`, `< ANY`, `<= ANY`, `>= ANY`.
+
+### 5. Truy vấn con tương quan 
+[:arrow_up: Mục lục](#mục-lục)
