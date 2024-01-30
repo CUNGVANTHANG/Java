@@ -794,3 +794,30 @@ _Chú ý:_ Toán tử logic khác: `= ANY`, `!= ANY`, `< ANY`, `<= ANY`, `>= ANY
 
 ### 5. Truy vấn con tương quan 
 [:arrow_up: Mục lục](#mục-lục)
+
+Bình thường chúng ta chỉ sử dụng các **truy vấn con độc lập với truy vấn chính** - bạn có thể chạy truy vấn con trước và sau đó đưa kết quả vào truy vấn chính.
+
+Bây giờ chúng ta sẽ tìm hiểu về các truy vấn con. Các **truy vấn này sẽ phụ thuộc vào truy vấn chính** và chúng được gọi là **truy vấn con tương quan**.
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM quoc_gia
+WHERE dien_tich <= (
+  SELECT MIN(dien_tich)
+  FROM thanh_pho
+  WHERE thanh_pho.ma_quoc_gia = quoc_gia.id
+);
+```
+
+Chúng ta muốn tìm kiếm tất cả các quốc gia có diện tích nhỏ hơn hoặc bằng diện tích của thành phố nhỏ nhất trong chính quốc gia đó. Nói cách khác, nếu một quốc gia có diện tích nhỏ hơn thành phố nhỏ nhất của nó, nó sẽ được hiển thị. Tại sao chúng ta lại sử dụng một truy vấn như vậy? Vì nó rất hữu ích khi chúng ta cần kiểm tra xem cơ sở dữ liệu có bất kỳ lỗi nào hay không. **Nếu truy vấn này trả về bất kỳ kết quả nào khác, chúng ta biết rằng có điều gì đó không ổn với các bản ghi dữ liệu.**
+
+Nội dung mới ở đây là gì? Hãy quan sát mệnh đề `WHERE` trong truy vấn con. Nó sử dụng `quoc_gia.id`. Quốc gia mà nó tham chiếu đến là quốc gia từ **truy vấn chính**. Đây là cơ chế đằng sau truy vấn con tương quan - nếu bạn chạy truy vấn con một mình, cơ sở dữ liệu sẽ thông báo:
+
+"Bạn muốn tôi so sánh `thanh_pho.ma_quoc_gia` với `quoc_gia.id`, nhưng bảng `quoc_gia` có rất nhiều `id`, vì vậy tôi không biết chọn `id` nào".
+
+Nhưng nếu bạn chạy câu lệnh như truy vấn con và mệnh đề chính duyệt qua `bảng quoc_gia`, cơ sở dữ liệu sẽ so sánh `quoc_gia.id` từ truy vấn con với `quoc_gia.id` hiện tại từ mệnh đề chính.
+
+_Chú ý:_ **Truy vấn con có thể sử dụng các bảng từ truy vấn chính, nhưng truy vấn chính không thể sử dụng các bảng từ truy vấn con!**
+
