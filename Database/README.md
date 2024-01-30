@@ -817,7 +817,30 @@ Nội dung mới ở đây là gì? Hãy quan sát mệnh đề `WHERE` trong tr
 
 "Bạn muốn tôi so sánh `thanh_pho.ma_quoc_gia` với `quoc_gia.id`, nhưng bảng `quoc_gia` có rất nhiều `id`, vì vậy tôi không biết chọn `id` nào".
 
-Nhưng nếu bạn chạy câu lệnh như truy vấn con và mệnh đề chính duyệt qua `bảng quoc_gia`, cơ sở dữ liệu sẽ so sánh `quoc_gia.id` từ truy vấn con với `quoc_gia.id` hiện tại từ mệnh đề chính.
+Nhưng nếu bạn chạy câu lệnh như truy vấn con và mệnh đề chính duyệt qua bảng `quoc_gia`, cơ sở dữ liệu sẽ so sánh `quoc_gia.id` từ truy vấn con với `quoc_gia.id` hiện tại từ mệnh đề chính.
 
 _Chú ý:_ **Truy vấn con có thể sử dụng các bảng từ truy vấn chính, nhưng truy vấn chính không thể sử dụng các bảng từ truy vấn con!**
+
+### 6. Đặt bí danh cho bảng với truy vấn con
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM thanh_pho main_city
+WHERE dan_so > (
+  SELECT AVG(dan_so)
+  FROM thanh_pho average_city
+  WHERE average_city.ma_quoc_gia = main_city.ma_quoc_gia
+);
+```
+
+Trong một quốc gia, chúng ta muốn tìm các thành phố có dân số lớn hơn dân số trung bình của quốc gia đó. Nếu theo cách cũ, chúng ta tìm kiếm thành phố trong truy vấn chính và kiểm tra dân số trung bình cho thành phố trong truy vấn con tương quan. Cùng một **bảng xuất hiện hai lần**, tuy nhiên cách này **không thực sự tối ưu hóa chương trình**.
+
+Đây là lý do tại sao chúng ta **nên sử dụng bí danh cho bảng**. 
+
+**Cách làm như sau:** trong truy vấn con, ta đặt `... FROM thanh_pho average_city ...` và trong truy vấn chính `... FROM thanh_pho main_city`. Ta đặt tên tạm thời mới cho bảng `thanh_pho`, hai tên khác nhau cho truy vấn chính và truy vấn con. Tên tạm thời (còn được gọi là **bí danh**) được đặt sau tên bảng, cách nhau bởi một khoảng trắng. 
+
+_Chú ý:_ Không có dấu phẩy ở đây, hãy ghi nhớ điều này!
 
