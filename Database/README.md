@@ -844,3 +844,59 @@ Trong một quốc gia, chúng ta muốn tìm các thành phố có dân số l�
 
 _Chú ý:_ Không có dấu phẩy ở đây, hãy ghi nhớ điều này!
 
+### 7. Kiểm tra tập hợp con có chứa bất kỳ dòng dữ liệu `EXISTS`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM thanh_pho
+WHERE EXISTS (
+  SELECT *
+  FROM trip
+  WHERE ma_thanh_pho = thanh_pho.id
+);
+```
+
+`EXISTS` kiểm tra xem có bất kỳ hàng nào thỏa mãn điều kiện hay không.
+
+Trong ví dụ, truy vấn này sẽ chỉ hiển thị thông tin của những thành phố có ít nhất một chuyến tham quan (**tồn tại một chuyến tham quan**) được tổ chức bởi công ty du lịch. Các thành phố không tổ chức chuyến tham quan nào sẽ không được hiển thị.
+
+### 8. Truy vấn con trong mệnh đề `FROM`
+[:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_
+
+```sql
+SELECT *
+FROM thanh_pho, (
+    SELECT
+      *
+    FROM quoc_gia
+    WHERE dien_tich < 1000) AS quoc_gia_nho
+WHERE quoc_gia_nho.id = thanh_pho.ma_quoc_gia;
+```
+
+Truy vấn trên tìm các thành phố từ các **quốc gia nhỏ**. Bảng `quoc_gia_nho` không có trong cơ sở dữ liệu, vì vậy... chúng ta tạo nó "tạm thời" bằng một truy vấn con trong mệnh đề `FROM`. Tất nhiên, ta cần đặt tên cho nó, vì vậy ta tạo một bí danh với từ khóa `AS`. 
+
+Cuối cùng, truy vấn hiển thị các thành phố cùng với quốc gia tương ứng, miễn là quốc gia có diện tích dưới 1.000 (km2). Bạn có nhớ cách chọn dữ liệu từ hai bảng không? Chúng ta cần viết điều kiện trong mệnh đề `WHERE`, nếu không mỗi thành phố sẽ được hiển thị cùng với tất cả các quốc gia phù hợp.
+
+### 9. Truy vấn con trong mệnh đề `SELECT`
+[:arrow_up: Mục lục](#mục-lục)
+
+Truy vấn con cũng có thể được sử dụng trong danh sách cột trong mệnh đề `SELECT`. Quan trọng là **truy vấn con trả về chính xác một hàng và một cột**.
+
+_Ví dụ:_
+
+```sql
+SELECT
+  name,
+  (
+    SELECT COUNT(*)
+    FROM trip
+    WHERE city_id = city.id) AS trip_count
+FROM city;
+```
+
+Trong truy vấn trên, chúng ta cung cấp tên của mỗi thành phố cùng với số lượng chuyến tham quan cho thành phố đó. Lưu ý rằng chúng ta sử dụng hàm `COUNT()` để đếm số chuyến tham quan đến mỗi thành phố.
