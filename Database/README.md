@@ -31,6 +31,16 @@
     - [4. Trả về tất cả giá trị hai bảng khớp nhau `FULL JOIN`](#4-trả-về-tất-cả-giá-trị-hai-bảng-khớp-nhau-full-join)
     - [5. Kết hợp bảng không sử dụng điều kiện `NATURAL JOIN`](#5-kết-hợp-bảng-không-sử-dụng-điều-kiện-natural-join)
     - [6. Nối bảng với chính nó bằng bí danh](#6-nối-bảng-với-chính-nó-bằng-bí-danh)
+  - [VI. Truy vấn con](#vi-truy-vấn-con)
+    - [1. Truy vấn con `()`](#1-truy-vấn-con-)
+    - [2. So sánh giá trị với giá trị trong tập hợp `IN`](#2-so-sánh-giá-trị-với-giá-trị-trong-tập-hợp-in)
+    - [3. So sánh giá trị với tất cả giá trị trong tập hợp `ALL`](#3-so-sánh-giá-trị-với-tất-cả-giá-trị-trong-tập-hợp-all)
+    - [4. So sánh giá trị với ít nhất một giá trị trong tập hợp `ANY`](#4-so-sánh-giá-trị-với-ít-nhất-một-giá-trị-trong-tập-hợp-any)
+    - [5. Truy vấn con tương quan](#5-truy-vấn-con-tương-quan)
+    - [6. Đặt bí danh cho bảng với truy vấn con](#6-đặt-bí-danh-cho-bảng-với-truy-vấn-con)
+    - [7. Kiểm tra tập hợp con có chứa bất kỳ dòng dữ liệu `EXISTS`](#7-kiểm-tra-tập-hợp-con-có-chứa-bất-kỳ-dòng-dữ-liệu-exists)
+    - [8. Truy vấn con trong mệnh đề `FROM`](#8-truy-vấn-con-trong-mệnh-đề-from)
+    - [9. Truy vấn con trong mệnh đề `SELECT`](#9-truy-vấn-con-trong-mệnh-đề-select)
 
 ## I. Tổng quan về cơ sở dữ liệu
 [:arrow_up: Mục lục](#mục-lục)
