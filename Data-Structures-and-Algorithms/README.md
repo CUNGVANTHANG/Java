@@ -3,9 +3,21 @@
 ## Mục lục
 - [DATA STRUCTURES AND ALGORITHMS](#data-structures-and-algorithms)
   - [Mục lục](#mục-lục)
-- [Phương thức được sử dụng](#phương-thức-được-sử-dụng)
-  - [1. Đệ quy](#1-đệ-quy)
-  - [2. Mảng và chuỗi ký tự](#2-mảng-và-chuỗi-ký-tự)
+
+<details>
+  <summary>1. Đệ quy</summary>
+  
+  - [a. Phân biệt Đệ quy và Vòng lặp](#a-phân-biệt-đệ-quy-và-vòng-lặp)
+  - [b. Các dạng đệ quy](#b-các-dạng-đệ-quy)
+</details>
+
+<details>
+  <summary>2. Mảng và chuỗi ký tự</summary>
+  
+  - [a. Mảng và chuỗi ký tự](#a-mảng-và-chuỗi-ký-tự)
+  - [b. Kỹ thuật](#b-các-dạng-đệ-quy)
+</details>
+
   - [3. Danh sách liên kết](#3-danh-sách-liên-kết)
   - [4. Ngăn xếp và hàng đợi](#4-ngăn-xếp-và-hàng-đợi)
   - [5. Thuật toán sắp xếp](#5-thuật-toán-sắp-xếp)
@@ -27,15 +39,15 @@
 
 
 ## 1. Đệ quy
-
-**Phân biệt Đệ quy và Vòng lặp:**
+[:arrow_up: Mục lục](#mục-lục)
+### a. Phân biệt Đệ quy và Vòng lặp
 
 | | Đệ quy | Vòng lặp
 | :---: | :---: | :---: |
 | Ưu điểm | Thực hiện các bài toán phức tạp (Chiến lược chia để trị )| Sử dụng bộ nhớ ít |
 | Nhược điểm | Sử dụng nhiều bộ nhớ | Phức tạp trong bảo trì |
 
-**Các dạng đệ quy:**
+### b. Các dạng đệ quy
 
 1. Đệ quy trực tiếp
    
@@ -66,6 +78,8 @@ static int func2(int y)
 ```
 
 ## 2. Mảng và chuỗi ký tự
+[:arrow_up: Mục lục](#mục-lục)
+### a. Mảng và chuỗi ký tự
 
 **1. Mảng**
 
@@ -94,7 +108,11 @@ Mảng và chuỗi ký tự thường hỗ trợ thực hiện các thao tác c�
 - Tìm kiếm phần tử bất kỳ (**Search**): Tìm kiếm một phần tử bằng cách sử dụng chỉ số đã cho hoặc theo giá trị của phần tử cần tìm kiếm.
 - Cập nhật giá trị của phần tử (**Update**): Cập nhật giá trị một phần tử tại chỉ số nhất định.
 
+### 2. Kỹ thuật 
+
 ## 3. Danh sách liên kết
+
+![image](https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/b217e40f-3a77-4d93-b806-ec7bb52b2634)
 
 
 ## 4. Ngăn xếp và hàng đợi
