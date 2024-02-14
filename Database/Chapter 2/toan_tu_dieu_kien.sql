@@ -1,1 +1,0 @@
-SELECT * FROM xe WHERE gia > 1000000000;

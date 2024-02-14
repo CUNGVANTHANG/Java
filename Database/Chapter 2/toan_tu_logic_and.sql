@@ -1,1 +1,0 @@
-SELECT ma_xe FROM xe WHERE nam_san_xuat > 2020 AND gia < 2000000000;
