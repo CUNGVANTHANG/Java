@@ -1,5 +1,3 @@
-package Practive;
-
 import java.util.Scanner;
 
 public class tach_chuoi_thanh_mang {
