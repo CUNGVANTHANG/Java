@@ -316,7 +316,63 @@ trong đó:
 
 ```private``` ngăn truy cập từ các lớp khác
 
-Chúng ta biết rằng **trường private không thể được truy cập từ bên ngoài lớp**. Tuy nhiên, nếu cần truy cập chúng, chúng ta có thể sử dụng các phương thức **getter và setter**.
+Chúng ta biết rằng **trường private không thể được truy cập từ bên ngoài lớp**. Tuy nhiên, nếu cần truy cập chúng, chúng ta có thể sử dụng các phương thức **getter và setter**. 
+
+Lưu ý: Nếu bạn dùng từ khóa **private** để **khai báo constructor thì bạn sẽ không thể khởi tạo** được đối tượng của lớp này. 
+
+- **Phạm vi truy cập (Access Modifier) của 4 loại:** `public, private, default, protected`
+
+| Phạm vi truy cập	| Truy cập bên trong class?	| Truy cập bên trong package?	| Truy cập bên ngoài package bởi class con? |	Truy cập bên ngoài class và không thuộc class con? |
+| :--: | :--: | :--: | :--: | :--: |
+| `private` |	X |		|  |	  |
+| `default` |	X	| X |	 |	 |
+| `protected` |	X	| X |	X	|  |
+| `public` |	X | 	X	 | X |	X |
+
+- **Sơ đồ lớp:**
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/c6fb97cb-77f8-462b-8ce6-d49517324960)
+
+Trong sơ đồ lớp, bạn có thể mô tả phạm vi truy cập của các thuộc tính, phương thức bằng cách đặt các ký tự `-`, `~`, `#`, `+` trước các thuộc tính và phương thức.
+
+Ký tự `-` sẽ tương ứng với phạm vi truy cập `private`.
+Ký tự `~` sẽ tương ứng với phạm vi truy cập `default`.
+Ký tự `#` sẽ tương ứng với phạm vi truy cập `protected`.
+Ký tự `+` sẽ tương ứng với phạm vi truy cập `public`.
+
+_Ví dụ:_
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/32778d2f-e425-4416-aee0-eabd959e4409)
+
+```java
+public class Student {
+	private String name;
+	private int age;
+
+	public Student() {
+
+	}
+
+	public void getInformation() {
+
+	}
+
+	public void display() {
+
+	}
+}
+```
+
+- **Khai báo và sử dụng mảng các đối tượng**
+
+```java
+// Khai báo mảng students với n phần tử
+Student[] students = new Student[n];
+for (int i = 0; i < n; i++) {
+	// Khởi tạo các phần tử trong mảng students
+	students[i] = new Student();
+}
+```
 
 - **setter**
 
