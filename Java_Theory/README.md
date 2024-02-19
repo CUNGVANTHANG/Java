@@ -623,6 +623,29 @@ Chúng ta có hai cách để thực hiện nạp chồng phương thức.
   - Số lượng tham số khác nhau
   - Các tham số có kiểu dữ liệu khác nhau
 
+_Ví dụ:_
+
+```java
+class Math {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static double add(double a, double b) {
+        return a + b;
+    }
+}
+
+class Entry {
+    public static void main(String[] args) {
+        System.out.println(Math.add(2, 4)); 
+        System.out.println(Math.add(3.5, 4.3)); // Nạp chồng phương thức
+    }
+}
+```
+
+Nghĩa là ta có thể sử dụng phương thức đó với nhiều kiểu tham số khác nhau. Giúp code trở nên gọn gàng, dễ đọc hơn thay vì tạo nhiều phương thức với tên khác nhau như này.
+
 ### 4. Tính đóng gói
 [:arrow_up: Mục lục](#mục-lục)
 
