@@ -336,8 +336,11 @@ Lưu ý: Nếu bạn dùng từ khóa **private** để **khai báo constructor 
 Trong sơ đồ lớp, bạn có thể mô tả phạm vi truy cập của các thuộc tính, phương thức bằng cách đặt các ký tự `-`, `~`, `#`, `+` trước các thuộc tính và phương thức.
 
 Ký tự `-` sẽ tương ứng với phạm vi truy cập `private`.
+
 Ký tự `~` sẽ tương ứng với phạm vi truy cập `default`.
+
 Ký tự `#` sẽ tương ứng với phạm vi truy cập `protected`.
+
 Ký tự `+` sẽ tương ứng với phạm vi truy cập `public`.
 
 _Ví dụ:_
@@ -362,6 +365,8 @@ public class Student {
 	}
 }
 ```
+
+- **Lưu ý:** rằng việc khai báo và sử dụng **mảng các đối tượng không giống với khai báo và sử dụng mảng các kiểu dữ liệu nguyên thủy** như int, double, String, ...
 
 - **Khai báo và sử dụng mảng các đối tượng**
 
@@ -674,6 +679,56 @@ class Main {
 ### 6. Từ khóa static
 [:arrow_up: Mục lục](#mục-lục)
 
+**Biến static** là biến mà bạn có thể sử dụng mà không cần phải khởi tạo đối tượng
+
+Ngoài việc sử dụng mà không cần phải khởi tạo đối tượng thì biến static còn có đặc điểm nữa là biến static được **chia sẻ bởi tất cả các đối tượng trong chương trình (giá trị của biến static là giống nhau ở tất cả các đối tượng)**. 
+
+```java
+class Counter {
+    int count; // Không có từ khóa static
+
+    public Counter() {
+        count++;
+        System.out.println(count);
+    }
+}
+
+class Entry {
+    public static void main(String[] args) {
+        Counter c1 = new Counter(); // 1
+        Counter c2 = new Counter(); // 1
+        Counter c3 = new Counter(); // 1
+    }
+}
+```
+
+Kết quả này chắc bạn cũng đoán được (do **count là thuộc tính riêng của mỗi đối tượng nên kết quả sẽ là 3 số 1**). Nhưng nếu biến count là biến static thì tất cả các đối tượng này đều sẽ dùng **chung 1 biến count**:
+
+```java
+class Counter {
+    static int count; // Có từ khóa static
+
+    public Counter() {
+        count++;
+        System.out.println(count);
+    }
+}
+
+class Entry {
+    public static void main(String[] args) {
+        Counter c1 = new Counter(); // 1
+        Counter c2 = new Counter(); // 2
+        Counter c3 = new Counter(); // 3
+    }
+}
+```
+
+Chính vì 2 tính chất này nên biến static sẽ thường được dùng để **lưu thông tin chung cho tất cả các đối tượng và lưu các hằng số**
+
+_Lưu ý:_ biến được khai báo với từ khóa static không được coi là thuộc tính do nó không thuộc đối tượng nào.
+
+**Phương thức static** cũng được khai báo với từ khóa static và được sử dụng mà không cần tạo ra báo đối tượng. 
+
 ```java
 class Animal {
  
@@ -694,6 +749,12 @@ class Animal {
 ```
 
 Chúng ta có thể **truy cập trực tiếp phương thức ```display()``` mà không cần sử dụng đối tượng của lớp**. Đó là bởi vì ta đã xác định phương thức là **```static```**.
+
+Một số tính chất của phương thức static:
+
+- Phương thức static có để được gọi mà không cần phải khởi tạo đối tượng.
+- Trong cùng một lớp, phương thức static chỉ có thể gọi tới phương thức static khác, không thể gọi tới phương thức không phải là static.
+- Trong cùng một lớp, phương thức static không thể gọi tới các thuộc tính không phải là static.
 
 - **Truy cập các trường/phương thức static từ các lớp khác**
 
