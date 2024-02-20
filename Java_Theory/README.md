@@ -651,6 +651,8 @@ Nghĩa là ta có thể sử dụng phương thức đó với nhiều kiểu th
 
 Tính đóng gói là một khái niệm cốt lõi khác của lập trình hướng đối tượng. Đóng gói có nghĩa là gộp các trường và phương thức lại với nhau bên trong một lớp.
 
+Tính đóng là kỹ thuật giúp bạn che giấu được những thông tin bên trong đối tượng. Mục đích chính của tính đóng gói là **giúp hạn chế các lỗi khi phát triển chương trình**.
+
 ```java
 class Rectangle {
 
@@ -666,7 +668,7 @@ class Rectangle {
 }
 ```
 
-Bạn có thể thấy phương thức ```computeArea()``` sử dụng các trường ```length``` và ```breadth``` để tính diện tích hình chữ nhật. Cả hai trường này đều xuất hiện trong cùng một lớp.
+Bạn có thể thấy phương thức ```calculateArea()``` sử dụng các trường ```length``` và ```breadth``` để tính diện tích hình chữ nhật. Cả hai trường này đều xuất hiện trong cùng một lớp.
 
 - **Ẩn dữ liệu**
 ```java
@@ -679,6 +681,62 @@ class Rectangle {
 ```
 
 Các lớp khác sẽ không thể truy cập trực tiếp vào các trường ```length```và ```breadth```. Bằng cách đặt các trường này ở phạm vi ```private```, chúng ta đã hạn chế truy cập không được cấp quyền từ bên ngoài lớp.
+
+*Ví dụ:*
+
+```java
+class Student {
+	private String name;
+	private int age;
+	private double gpa;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public double getGpa() {
+		return gpa;
+	}
+
+	public void setGpa(double gpa) {
+		this.gpa = gpa;
+	}
+}
+```
+
+Với cách làm này thông tin của đối tượng đã được ẩn đi, bạn chỉ có thể **giao tiếp với đối tượng thông qua các phương thức**.
+
+Điều này cũng giống với thực tế. Ví dụ khi bạn gặp một người lạ thì bạn không thể biết được các thuộc tính của người này (số điện thoại, sở thích, ...), kể cả khi bạn hỏi thì người này cũng chưa chắc đã trả lời cho bạn đúng sự thật (**giống như phương thức không trả về giá trị thực thuộc tính mà trả về một giá trị khác**).
+
+Các lợi ích chính mà tính đóng gói đem lại:
+
+- Hạn chế được các truy xuất không hợp lệ tới các thuộc tính của đối tượng.
+- Giúp cho trạng thái của các đối tượng luôn đúng. Ví dụ nếu thuộc tính gpa của lớp `Student` là `public` thì sẽ rất khó kiểm soát được giá trị, bạn có thể thay đổi `gpa` thành bất kỳ giá trị nào. Ngược lại, nếu bạn để thuộc tính gpa là `private` và cung cấp hàm `setGpa()` giống như sau:
+
+```java
+public void setGpa(double gpa) {
+	if(gpa >= 0 && gpa <= 4) {
+		this.gpa = gpa;
+	}else {
+		System.out.println("gpa is invalid");
+	}
+}​
+```
+
+thì lúc này giá trị của thuộc tính gpa sẽ luôn được đảm bảo là không âm và nhỏ hơn hoặc bằng 4 (do muốn thay đổi gpa thì phải thông qua hàm `setGpa()`).
+- Giúp ẩn đi những thông tin không cần thiết về đối tượng.
 
 ### 5. Toán tử instanceof
 [:arrow_up: Mục lục](#mục-lục)
