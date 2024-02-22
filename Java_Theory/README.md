@@ -495,6 +495,63 @@ Dog() {
 
 **Lưu ý: ```super()``` phải là câu lệnh đầu tiên bên trong hàm khởi tạo của lớp con khi gọi hàm khởi tạo của lớp cha**
 
+_Ví dụ:_
+
+```java
+class Person {
+    private String name;
+    private int dob;
+
+    public Person(String name, int dob) {
+        this.name = name;
+        this.dob = dob;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setDob(int dob) {
+        this.dob = dob;
+    }
+
+    public int getDob() {
+        return dob;
+    }
+}
+
+class Student extends Person {
+    private double GPA;
+
+    public Student(String name, int dob, double GPA) {
+        // Gọi tới constructor 2 tham số của lớp cha
+        super(name, dob);
+        this.GPA = GPA;
+    }
+
+    public void setGpa(double GPA) {
+        this.GPA = GPA;
+    }
+
+    public double getGpa() {
+        return GPA;
+    }
+}
+
+public class Entry {
+    public static void main(String[] args) {
+        Student s = new Student("Hai", 1999, 8.8);
+        System.out.println("Name: " + s.getName());
+        System.out.println("Date of birth: " + s.getDob());
+        System.out.println("GPA: " + s.getGpa());
+    }
+}
+```
+
 ### 2. Tính trừu tượng
 [:arrow_up: Mục lục](#mục-lục)
 
