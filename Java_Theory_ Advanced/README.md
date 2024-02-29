@@ -1256,6 +1256,7 @@ Chúng ta sử dụng tên của enum cùng với toán tử `.` và giá trị 
 
 - **Biến enum**
 
+```java
 // enum of type Size
 enum Size {
     SMALL, MEDIUM, LARGE
@@ -1273,6 +1274,7 @@ class Main {
         System.out.println(pizzaSize); // SMALL
     }
 }
+```
 
 Trong ví dụ trên:
 
