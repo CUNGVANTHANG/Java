@@ -486,16 +486,7 @@ Một ví dụ khác:
 
 ```super``` trong hàm khởi tạo:
 
-```java
-Dog() {
-    super();
-    System.out.println("I am a dog");
-}
-```
-
 **Lưu ý: ```super()``` phải là câu lệnh đầu tiên bên trong hàm khởi tạo của lớp con khi gọi hàm khởi tạo của lớp cha**
-
-_Ví dụ:_
 
 ```java
 class Person {
@@ -548,6 +539,97 @@ public class Entry {
         System.out.println("Name: " + s.getName());
         System.out.println("Date of birth: " + s.getDob());
         System.out.println("GPA: " + s.getGpa());
+    }
+}
+```
+
+- `toString()` là phương thức ghi đè từ lớp Object
+
+Trong thực tế bạn sẽ sử dụng phương thức `toString()` rất nhiều. Ví dụ khi bạn gọi hàm `System.out.println()` với một đối tượng thì chương trình sẽ hiển thị phương thức `toString()` của đối tượng đó
+
+```java
+public class Student {
+    private String name;
+    private String address;
+    private double gpa;
+
+    public Student(String name, String address, double gpa) {
+        this.name = name;
+        this.address = address;
+        this.gpa = gpa;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", address: " + address + ", GPA: " + gpa;
+    }
+}
+
+public class Entry {
+    public static void main(String[] args) {
+ 	Student s = new Student("Kien", "Ha Noi", 6.6);
+ 	System.out.println(s);	// Name: Kien, addres: Ha Noi, GPA: 6.6
+    }
+}
+```
+
+Có thể thấy ta có thể in kết quả ra mà không cần gọi phương thức.
+
+- Trong Java, có 3 kiểu kế thừa là **đơn kế thừa**, **kế thừa nhiều cấp** và **kế thừa thứ bậc**:
+
+<img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/c04ea1f6-f31d-4ce7-9a17-3bd7160e4b81" style="width: 500px">
+
+Về bản chất, khi **một lớp không kế thừa lớp nào thì lớp đó sẽ được kế thừa trực tiếp từ lớp Object** giống như đơn kế thừa. Nhưng nếu **lớp đó có kế thừa từ một lớp khác lớp Object thì lớp đó sẽ không được kế thừa trực tiếp từ lớp Object nữa mà là theo kế thừa nhiều cấp**
+
+<img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/b6651e61-b40f-4a6a-a33b-bdd9b4546f51" style="width: 300px">
+
+- Toán tử `==` là **toán tử so sánh địa chỉ** nơi đối tượng được cấp phát 
+
+```java
+class Student{
+    public String name;
+    public String address;
+
+    public Student(String name, String address) {
+	this.name = name;
+	this.address = address;
+    }
+}
+
+public class Entry {
+    public static void main(String[] args) {
+	Student s1 = new Student("Viet", "Bac Ninh");
+	Student s2 = new Student("Viet", "Bac Ninh");
+	System.out.println(s1 == s2); // false
+    }
+}
+```
+
+Rõ ràng bạn không thể sử dụng toán tử `==` vì đây là toán tử so sánh địa chỉ nơi đối tượng được cấp phát, thay vào đó bạn phải tự viết phương thức để so sánh hoặc sử dụng phương thức `equals()` mà lớp `Object` đã cung cấp sẵn, bạn chỉ cần ghi đè lại phương thức này giống như chương trình sau
+
+```java
+class Student {
+    public int id;
+    public String name;
+    public String address;
+
+    public Student(int id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.id == ((Student) obj).id;
+    }
+}
+
+public class Entry {
+    public static void main(String[] args) {
+        Student s1 = new Student(1000, "Viet", "Bac Ninh");
+        Student s2 = new Student(1000, "Viet", "Bac Ninh");
+        System.out.println(s1.equals(s2)); // true
     }
 }
 ```
