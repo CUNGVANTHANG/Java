@@ -777,10 +777,11 @@ class Rectangle extends Polygon {
 }
 ```
 
-- **interface**
-Lớp trừu tượng có thể bao gồm cả phương thức trừu tượng và không trừu tượng.
+Lớp trừu tượng (**abstract**) có thể bao gồm cả **phương thức trừu tượng** và **không trừu tượng**.
 
-Trong Java, chúng ta cũng có thể tạo một lớp hoàn toàn trừu tượng gọi là interface. **Một interface chỉ chứa các phương thức trừu tượng.**
+- **interface**
+
+Trong Java, chúng ta cũng có thể tạo **một lớp hoàn toàn trừu tượng** gọi là interface. **Một interface chỉ chứa các phương thức trừu tượng.**
 
 ```java
 interface Animal {
