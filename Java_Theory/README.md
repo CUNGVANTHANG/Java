@@ -575,7 +575,7 @@ public class Entry {
 
 Có thể thấy ta có thể in kết quả ra mà không cần gọi phương thức.
 
-- Trong Java, có 3 kiểu kế thừa là **đơn kế thừa**, **kế thừa nhiều cấp** và **kế thừa thứ bậc**:
+**- Trong Java, có 3 kiểu kế thừa là **đơn kế thừa**, **kế thừa nhiều cấp** và **kế thừa thứ bậc**:**
 
 <img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/c04ea1f6-f31d-4ce7-9a17-3bd7160e4b81" style="width: 500px">
 
@@ -583,7 +583,7 @@ Về bản chất, khi **một lớp không kế thừa lớp nào thì lớp đ
 
 <img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/b6651e61-b40f-4a6a-a33b-bdd9b4546f51" style="width: 300px">
 
-- Toán tử `==` là **toán tử so sánh địa chỉ** nơi đối tượng được cấp phát 
+**- Toán tử `==` là **toán tử so sánh địa chỉ** nơi đối tượng được cấp phát**
 
 ```java
 class Student{
@@ -632,6 +632,108 @@ public class Entry {
         System.out.println(s1.equals(s2)); // true
     }
 }
+```
+
+- **Up-casting và down-casting trong Java**
+
+<img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/57e4568d-707e-4050-9a71-4ae3beee2689" style="width: 300px;">
+
+**Up-casting:** Khi biến của lớp cha tham chiếu tới đối tượng của lớp con (đối tượng của lớp con bị chuyển kiểu dữ liệu về lớp cha), thì đó được gọi là up-casting
+
+_Ví dụ:_
+
+```java
+class Animal {
+    public void sound() {
+        System.out.println("some sound");
+    }
+}
+
+class Cat extends Animal {
+    public void sound() {
+        System.out.println("meow meow");
+    }
+}
+
+class Dog extends Animal {
+    public void sound() {
+        System.out.println("woof woof");
+    }
+}
+
+public class Entry {
+    public static void main(String[] args) {
+        // Up-casting
+        Animal animal1 = new Cat();
+        animal1.sound();
+        // Up-casting
+        Animal animal2 = new Dog();
+        animal2.sound();
+    }
+}
+```
+
+_Kết quả:_
+
+```
+meow meow
+woof woof
+```
+
+Có thể thấy đối tượng thuộc lớp **Cat** và lớp **Dog** đã được **gán cho biến thuộc lớp Animal** (chuyển kiểu về lớp Animal), đó chính là **up-casting**
+
+_Lưu ý:_ Khi biến của **lớp cha tham chiếu tới đối tượng của lớp con** thì biến này **chỉ có thể gọi tới các thuộc tính và phương thức có ở lớp cha** và **nếu lớp con ghi đè thì phương thức được gọi sẽ ở lớp con**.
+
+<img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/d4653ae3-42f7-44d5-a4cb-49cf3bf07c28" style="height: 500px;">
+
+Chương trình này sẽ báo lỗi do phương thức `play()` không có ở lớp cha
+
+Nếu thay `animal.play()` thành `animal.sound()` thì chương trình sẽ hiển thị ra "**woof woof**" thay vì "**some sound**" (do lớp con ghi đè phương thức `sound()` từ lớp cha).
+
+> **Để gọi tới được phương thức `play()`, bạn cần thực hiện **down-casting**.**
+
+**Down-casting**: chuyển từ lớp cha sang lớp con.
+
+_Ví dụ:_ Bạn có thể gọi tới phương thức `play()` từ biến animal giống như sau
+
+```java
+class Animal {
+    public void sound() {
+        System.out.println("some sound");
+    }
+}
+
+class Dog extends Animal {
+    public void sound() {
+        System.out.println("woof woof");
+    }
+
+    public void play() {
+        System.out.println("The dog is playing");
+    }
+}
+
+public class Entry {
+    public static void main(String[] args) {
+        Animal animal = new Dog();
+        // Down-casting
+        ((Dog) animal).play();
+    }
+}
+```
+
+_Kết quả:_
+
+```
+The dog is playing
+```
+
+Hoặc bạn cũng có thể thực hiện **down-casting** giống như sau:
+
+```java
+Animal animal = new Dog();
+Dog dog = (Dog)animal;
+dog.play();
 ```
 
 ### 2. Tính trừu tượng
