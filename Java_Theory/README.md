@@ -741,17 +741,71 @@ dog.play();
 
 Tính trừu tượng là một trong những khái niệm quan trọng trong lập trình hướng đối tượng. Nó cho phép ta quản lý độ phức tạp của chương trình bằng cách ẩn các chi tiết không cần thiết và chỉ hiển thị thông tin cần thiết.
 
+_Ví dụ 1:_ Khi bạn đi **rút tiền ở cây ATM** thì bạn **không cần quan tâm** tới cách mà **cây ATM hoạt động hay các thành phần** có trong cây ATM, cái mà bạn **quan tâm** duy nhất đó là **tính năng rút tiền**. Trong trường hợp này các **thông tin không cần thiết** của cây ATM đã được **ẩn đi**, đó chính là tính trừu tượng.
+
+_Ví dụ 2:_ Tương tự trong lập trình cũng vậy, khi **sử dụng một đối tượng** bạn chỉ cần **quan tâm** tới các **phương thức cần thiết** và chỉ cần biết phương thức đó được dùng để làm gì chứ **không cần quan tâm tới source code và các phương thức khác**.
+
+- **Variable hiding**
+
+**Variable hiding** xảy ra khi lớp con khai báo thuộc tính có **tên giống tên** thuộc tính ở lớp cha, lúc này **thuộc tính của lớp cha sẽ không bị lớp con ghi đè** mà bị **lớp con ẩn đi**
+
+```java
+class SuperClass {
+    int x = 10;
+}
+
+class SubClass extends SuperClass {
+    int x = 20;
+}
+
+public class Entry {
+    public static void main(String[] args) {
+        SuperClass a = new SubClass();
+        System.out.println(a.x); // 10
+    }
+}
+```
+
+Trong ví dụ trên thuộc tính x ở lớp con và thuộc tính x ở lớp cha là **2 thuộc tính tồn tại độc lập**. Do không bị ghi đè nên khi sử dụng **up-casting** thì thuộc tính được gọi vẫn là thuộc tính ở lớp cha
+
+Muốn gọi tới được **thuộc tính của lớp con** bạn phải sử dụng **down-casting** giống như sau
+
+```java
+class SuperClass {
+    int x = 10;
+}
+
+class SubClass extends SuperClass {
+    int x = 20;
+}
+
+public class Entry {
+    public static void main(String[] args) {
+        SuperClass a = new SubClass();
+        System.out.println(a.x); // 10
+	System.out.println(((SubClass)a).x); // 20
+    }
+}
+```
+
 - **abstract**
 
 Trong Java, chúng ta cũng có thể tạo các phương thức không có phần thân hàm. Những phương thức này được gọi là phương thức trừu tượng.
 
-Chúng ta sử dụng **từ khóa ```abstract``` để tạo các phương thức trừu tượng**. Ví dụ:
+Chúng ta sử dụng **từ khóa ```abstract``` để tạo các phương thức trừu tượng**. 
+
+_Ví dụ:_
+
 ```java
 abstract void makeSound();
 ```
-```makeSound()``` là một phương thức trừu tượng. Phần thân của phương thức trừu tượng được thay thế bằng ;
 
-Chúng ta sử dụng **từ khóa ```abstract``` để tạo lớp trừu tượng**. Ví dụ: 
+```makeSound()``` là một phương thức trừu tượng. Phần thân của phương thức trừu tượng được thay thế bằng `;`
+
+Chúng ta sử dụng **từ khóa ```abstract``` để tạo lớp trừu tượng**. 
+
+_Ví dụ:_
+
 ```java
 abstract class Polygon {
     // code inside the class
@@ -759,11 +813,16 @@ abstract class Polygon {
 ```
 
 **Chúng ta không thể tạo các đối tượng của lớp trừu tượng**, vậy làm thế nào để truy cập các phương thức bên trong lớp?
-Trong Java, chúng ta phải **kế thừa ```extends``` lớp trừu tượng để sử dụng nó**. Ví dụ:
+
+Trong Java, chúng ta phải **kế thừa ```extends``` lớp trừu tượng để sử dụng nó**.
+
+_Ví dụ:_
+
 ```java
 abstract class Polygon {
 
-    // abstract method 
+    // abstract method
+    // Phương thức trừu tượng là phương thức mà chỉ có phần khai báo, không có phần thân. 
     abstract void getArea();
 
     // non-abstract method
@@ -773,11 +832,14 @@ abstract class Polygon {
 }
 
 class Rectangle extends Polygon {
-
+    // Phải ghi đè phương thức trừu tượng getArea(), nếu không sẽ lỗi
+    public void getArea() {
+        
+    }
 }
 ```
 
-Lớp trừu tượng (**abstract**) có thể bao gồm cả **phương thức trừu tượng** và **không trừu tượng**.
+**Lớp trừu tượng** (**abstract**) có thể bao gồm cả **phương thức trừu tượng** và **không trừu tượng**. **Phương thức trừu tượng** là phương thức mà chỉ có phần khai báo, không có phần thân. 
 
 - **interface**
 
@@ -785,9 +847,28 @@ Trong Java, chúng ta cũng có thể tạo **một lớp hoàn toàn trừu tư
 
 ```java
 interface Animal {
+    public abstract void play();
+    public abstract void makeSound();
+}
+```
 
-    abstract public void play(); 
-    abstract public void makeSound();
+hoặc như này
+
+```java
+interface IAnimal{
+    int N = 4;
+    void move();
+    void sound();
+}
+```
+
+thì trình biên dịch sẽ tự hiểu là 
+
+```java
+interface IAnimal {
+    public static final int N = 4;
+    public abstract void move();
+    public abstract void sound();
 }
 ```
 
@@ -813,6 +894,40 @@ class Dog implements Animal {
     }
 }
 ```
+
+Một lớp có thể kế thừa nhiều **interface**. Do bản chất **interface** chỉ chứa các **phương thức rỗng** nên Java cho phép **một lớp kế thừa nhiều interface**.
+
+```java
+interface IFlyable {
+    void fly();
+}
+
+interface IEatable {
+    void eat();
+}
+
+class Bird implements IFlyable, IEatable {
+    @Override
+    public void fly() {
+        System.out.println("Bird flying");
+    }
+
+    @Override
+    public void eat() {
+        System.out.println("Bird eats");
+    }
+}
+
+public class Entry {
+    public static void main(String[] args) {
+        Bird bird = new Bird();
+        bird.eat(); // Bird eats
+        bird.fly(); // Bird flying
+    }
+}
+```
+
+Khi nhìn vào **interface** thì thứ duy nhất mà bạn nhìn thấy đó là các **phương thức trừu tượng (các tính năng)**, do đó **sử dụng interface** được coi là **trừu tượng hoàn toàn**.
 
 ### 3. Tính đa hình
 [:arrow_up: Mục lục](#mục-lục)
