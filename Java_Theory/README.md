@@ -544,7 +544,57 @@ public class Entry {
 }
 ```
 
-- `toString()` là phương thức ghi đè từ lớp Object
+_Lưu ý:_ Khi một lớp con được tạo, constructor của lớp cha sẽ được gọi trước constructor của lớp con. Nếu constructor của lớp con không gọi `super()`, Java sẽ tự động thêm một lời gọi `super()` mặc định tới constructor không tham số của lớp cha. 
+
+```java
+class A {
+
+    public A() {
+        System.out.print("A");
+    }
+}
+
+class B extends A {
+
+    public B() {
+        System.out.print("B");
+    }
+}
+
+class C extends B {
+
+    public C() {
+        System.out.print("C");
+    }
+}
+
+public class Quiz {
+
+    public static void main(String[] args) {
+        C c = new C(); // ABC
+    }
+}
+```
+
+c khởi tạo => gọi super đến class cha B => gọi super đến class cha C
+
+```java
+class B extends A {
+    public B() {
+        super(); // Gọi constructor của lớp cha A
+        System.out.print("B");
+    }
+}
+
+class C extends B {
+    public C() {
+        super(); // Gọi constructor của lớp cha B
+        System.out.print("C");
+    }
+}
+```
+
+- **`toString()` là phương thức ghi đè từ lớp Object**
 
 Trong thực tế bạn sẽ sử dụng phương thức `toString()` rất nhiều. Ví dụ khi bạn gọi hàm `System.out.println()` với một đối tượng thì chương trình sẽ hiển thị phương thức `toString()` của đối tượng đó
 
