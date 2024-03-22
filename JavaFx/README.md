@@ -8,6 +8,7 @@
 - [4. Thông báo Dialog](#4-thông-báo-dialog)
 - [5. Check box](#5-check-box)
 - [6. Property](#6-property)
+- [7. Binding ràng buộc](#7-binding-ràng-buộc)
 
 ## 1. Tạo chương trình JavaFX đầu tiên
 [:arrow_up: Mục lục](#mục-lục)
@@ -567,3 +568,78 @@ DoubleProperty [value: 11.0]
 ```
 
 Cho thấy được Property bắt được sự thay đổi khi lắng nghe sự kiện.
+
+## 7. Binding ràng buộc
+[:arrow_up: Mục lục](#mục-lục)
+
+```java
+package org.app;
+
+import javafx.application.Application;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage primaryStage)  {
+        IntegerProperty a = new SimpleIntegerProperty(4);
+        IntegerProperty b = new SimpleIntegerProperty();
+        System.out.println(b.getValue()); // 0 - Ban đầu chưa ràng buộc
+        b.bind(a.add(3)); // b ràng buộc a + 3
+        a.setValue(12);
+        System.out.println(b.getValue()); // 15 - Ràng buộc với a + 3
+        a.setValue(10);
+        System.out.println(b.getValue()); // 13 - Ràng buộc với a + 3
+    }
+}
+```
+
+_Kết quả:_
+
+```
+0
+15
+13
+```
+
+## 8. Sử dụng Scene Builder
+[:arrow_up: Mục lục](#mục-lục)
+
+- **Cách mở file `.fxml` trong Scene Builder:**
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/3263515e-39e6-4fde-b813-22156471227b)
+
+Chuột phải vào file `.fxml` --> **Open In SceneBuilder** --> Thư mục chứa file `Scene Builder.exe`
+
+- **Cách đọc file `.fxml` trong Java:**
+
+```java
+package org.app;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 851, 640));
+        primaryStage.show();
+    }
+
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
+```
