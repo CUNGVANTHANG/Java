@@ -1,0 +1,211 @@
+## JavaFx 
+
+## 1. Tạo chương trình JavaFX đầu tiên
+
+- **Bước 1:** **import** `javafx.application.Application` xong đó **extends** `Aplication` và **Override** `start()` như sau:
+
+```java
+package application;   
+import javafx.application.Application;  
+import javafx.stage.Stage;
+
+public class Hello_World extends Application{  
+  
+    @Override  
+    public void start(Stage primaryStage) throws Exception {  
+        // TODO Auto-generated method stub  
+          
+    }  
+  
+}  
+```
+
+Phương thức `start()` là điểm khởi đầu của việc xây dựng một ứng dụng JavaFX do đó trước tiên chúng ta cần ghi đè phương thức bắt đầu của lớp `javafx.application.Application`. 
+
+Đối tượng của lớp `javafx.stage.Stage` được truyền vào phương thức `start()` do đó nhập lớp này và chuyển đối tượng của nó vào phương thức `start`. 
+
+`JavaFX.application.Application` cần được nhập để ghi đè phương thức bắt đầu.
+
+- **Bước 2:** Tạo Button
+
+Một nút có thể được tạo bằng cách khởi tạo lớp `javafx.scene.control.Button`
+
+```java
+package application;   
+import javafx.application.Application;  
+import javafx.scene.control.Button;  
+import javafx.stage.Stage;
+
+public class Hello_World extends Application{  
+  
+    @Override  
+    public void start(Stage primaryStage) throws Exception {  
+        // TODO Auto-generated method stub  
+        Button btn1 = newButton("Say, Hello World");  
+          
+    }  
+  
+}  
+```
+
+- **Bước 3:** Tạo layout và thêm Button vào đó
+
+```java
+package application;   
+import javafx.application.Application;  
+import javafx.scene.control.Button;  
+import javafx.stage.Stage;  
+import javafx.scene.layout.StackPane;
+ 
+public class Hello_World extends Application{  
+  
+    @Override  
+    public void start(Stage primaryStage) throws Exception {  
+        // TODO Auto-generated method stub  
+        Button btn1 = new Button("Say, Hello World");  
+        StackPane root = new StackPane();  
+        root.getChildren().add(btn1);  
+    }  
+  
+}  
+```
+
+Trong ứng dụng này, chúng tôi đã triển khai bố cục `StackPane` (layout theo kiểu xếp chồng). Nó có thể được triển khai bằng cách khởi tạo lớp `javafx.scene.layout.StackPane`.
+
+- **Bước 4:** Tạo Scene (Bối cảnh)
+
+```java
+package application;   
+import javafx.application.Application;  
+import javafx.scene.Scene;  
+import javafx.scene.control.Button;  
+import javafx.stage.Stage;  
+import javafx.scene.layout.StackPane;
+
+public class Hello_World extends Application{  
+  
+    @Override  
+    public void start(Stage primaryStage) throws Exception {  
+        // TODO Auto-generated method stub  
+        Button btn1 = new Button("Say, Hello World");  
+        StackPane root = new StackPane();  
+        root.getChildren().add(btn1);  
+        Scene scene=new Scene(root);      
+    }  
+  
+}  
+```
+
+- **Bước 5:** Chuẩn bị Stage (Sân khấu)
+
+```java
+package application;   
+import javafx.application.Application;  
+import javafx.scene.Scene;  
+import javafx.scene.control.Button;  
+import javafx.stage.Stage;  
+import javafx.scene.layout.StackPane;  
+public class Hello_World extends Application{  
+  
+    @Override  
+    public void start(Stage primaryStage) throws Exception {  
+        // TODO Auto-generated method stub  
+        Button btn1=new Button("Say, Hello World");  
+        StackPane root=new StackPane();  
+        root.getChildren().add(btn1);  
+        Scene scene=new Scene(root);      
+        primaryStage.setScene(scene);  
+        primaryStage.setTitle("First JavaFX Application");  
+        primaryStage.show();  
+    }  
+  
+}  
+```
+
+- **Bước 6:** Tạo sự kiện cho Button
+
+Sẽ có nhiều kiểu tạo sự kiện nhưng chủ yếu người ta hay sử dụng anonymous class, thay vì những cách khác. Bởi vì sự tiện dụng của nó khi sử dụng.
+
+Dùng `setOnAction()` trên nút và xác định **anonymous class Event Handler** làm tham số cho phương thức.
+
+```java
+package application;   
+import javafx.application.Application;  
+import javafx.event.ActionEvent;  
+import javafx.event.EventHandler;  
+import javafx.scene.Scene;  
+import javafx.scene.control.Button;  
+import javafx.stage.Stage;  
+import javafx.scene.layout.StackPane;
+
+public class Hello_World extends Application{  
+  
+    @Override  
+    public void start(Stage primaryStage) throws Exception {  
+        // TODO Auto-generated method stub  
+        Button btn1 = new Button("Say, Hello World");  
+        btn1.setOnAction(new EventHandler<ActionEvent>() {  
+              
+            @Override  
+            public void handle(ActionEvent e) {  
+                // TODO Auto-generated method stub  
+                System.out.println("hello world");  
+            }  
+        });  
+        StackPane root = new StackPane();  
+        root.getChildren().add(btn1);  
+        Scene scene = new Scene(root,600,400);      
+        primaryStage.setScene(scene);  
+        primaryStage.setTitle("First JavaFX Application");  
+        primaryStage.show();  
+    }  
+  
+}  
+```
+
+- **Bước 7:** Tạo phương thức `main`
+
+Dùng `launch()` để chạy chương trình ứng dụng
+
+```java
+package application;   
+import javafx.application.Application;  
+import javafx.event.ActionEvent;  
+import javafx.event.EventHandler;  
+import javafx.scene.Scene;  
+import javafx.scene.control.Button;  
+import javafx.stage.Stage;  
+import javafx.scene.layout.StackPane;  
+public class Hello_World extends Application{  
+  
+    @Override  
+    public void start(Stage primaryStage) throws Exception {  
+        // TODO Auto-generated method stub  
+        Button btn1=new Button("Say, Hello World");  
+        btn1.setOnAction(new EventHandler<ActionEvent>() {  
+              
+            @Override  
+            public void handle(ActionEvent arg0) {  
+                // TODO Auto-generated method stub  
+                System.out.println("hello world");  
+            }  
+        });  
+        StackPane root = new StackPane();  
+        root.getChildren().add(btn1);  
+        Scene scene = new Scene(root,600,400);      
+        primaryStage.setTitle("First JavaFX Application");  
+        primaryStage.setScene(scene);  
+        primaryStage.show();  
+    }
+
+    public static void main (String[] args) {  
+        launch();  
+    }  
+  
+}  
+```
+
+_Kết quả:_
+
+<img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/bb8170c6-af50-4193-b4ff-56a0e5f3122a" width="500px">
+
