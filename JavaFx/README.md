@@ -209,3 +209,63 @@ _Kết quả:_
 
 <img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/bb8170c6-af50-4193-b4ff-56a0e5f3122a" width="500px">
 
+## 2. Thay đổi scene
+
+```java
+package org.app;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+    Stage window;
+    Scene scene1, scene2;
+
+    @Override
+    public void start(Stage primaryStage)  {
+        window = primaryStage;
+        // scene1
+        Label label = new Label("Welcome");
+        Button button1 = new Button("Go to");
+        // Tạo sự kiện bấm vào button sẽ chuyển sang scene2
+        button1.setOnAction(event -> {
+            window.setScene(scene2);
+        });
+        VBox layout1 = new VBox();
+        layout1.getChildren().addAll(label, button1);
+        scene1 = new Scene(layout1, 300, 200);
+
+        // scene2
+        Button button2 = new Button("Go back");
+        // Tạo sự kiện bấm vào button sẽ chuyển sang scene1
+        button2.setOnAction(event -> {
+            window.setScene(scene1);
+        });
+        StackPane layout2 = new StackPane();
+        layout2.getChildren().add(button2);
+        scene2 = new Scene(layout2, 200, 300);
+
+        // Set bối cảnh ở scene1
+        window.setScene(scene1);
+        // Hiển thị ứng dụng
+        window.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
+```
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/13639213-a7c1-4786-aec5-ae7137cf1ee6)
+
+khi bấm vào button sẽ chuyển sang scene2
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/fe5663a4-0d70-4a6c-8e05-a80221222a0d)
+
+khi bấm vào button sẽ chuyển sang scene1
