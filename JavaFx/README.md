@@ -2,6 +2,9 @@
 
 ## Mục lục
 
+<details>
+  <summary>JavaFx cơ bản</summary>
+
 - [1. Tạo chương trình JavaFx đầu tiên](#1-tạo-chương-trình-javafx-đầu-tiên)
 - [2. Thay đổi Scene](#2-thay-đổi-scene)
 - [3. Thông báo Alert](#3-thông-báo-alert)
@@ -9,6 +12,10 @@
 - [5. Check box](#5-check-box)
 - [6. Property](#6-property)
 - [7. Binding ràng buộc](#7-binding-ràng-buộc)
+- [8. Sử dụng Scene Builder](#8-sử-dụng-scene-builder)
+- [9. Xử lý Event](#9-xử-lý-event)
+- [10. Định dạng bằng CSS](#10-định-dạng-bằng-css)
+</details>
 
 ## 1. Tạo chương trình JavaFX đầu tiên
 [:arrow_up: Mục lục](#mục-lục)
@@ -643,3 +650,106 @@ public class Main extends Application {
     }
 }
 ```
+
+## 9. Xử lý Event
+[:arrow_up: Mục lục](#mục-lục)
+
+- **Bước 1:**
+
+Ban đầu cần thay đổi tên `fx:controller="org.app.Controller"` trong file `.fxml` đúng với tên file Java cần để xử lý
+
+```fxml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.app.Controller" 
+            prefHeight="400.0" prefWidth="600.0">
+
+</AnchorPane>
+```
+
+`org.app.Controller` là package chứa file Java tên là `Controller.java`
+
+hoặc vào mục Controller trong Scene Builder để thay đổi như sau:
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/cf64243d-781c-4572-8745-8cb21faacf01)
+
+- **Bước 2:**
+
+_Ví dụ:_ Giao diện như sau:
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/bc5a3571-ad92-4ec2-86b0-f1bdee598f03)
+
+Ta cần phải lấy `id` của `TextField` (ô trống để nhập dữ liệu chiều cao kia) trong phần Code như sau và đặt tên nó là `Height`
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/a3c444e5-12a8-4d71-a787-7e826d1532f2)
+
+Rồi mở file `Controller.java` thêm
+
+```java
+package org.app;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+
+public class Controller {
+    @FXML
+    private TextField Height;
+    
+    public void Submit (ActionEvent event) {
+        String height = Height.getText();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Chiều cao của bạn: " + height + " cm");
+        alert.show();
+    }
+}
+```
+
+Xong rùi vào Scene Builder -> Chọn Button (Nhập) trên giao diện -> Chọn mục Code thêm `submit` vào On Action như sau:
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/cbf6dc53-ab6c-4eaf-8d13-fabe1db05a78)
+
+- **Bước 3:**
+
+Vào file `Main.java` thêm đoạn code sau để đọc file `.fxml`
+
+```java
+package org.app;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("Sample.fxml"));
+        primaryStage.setTitle("App");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch();
+    }
+}
+```
+
+_Kết quả:_
+
+<img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/cb68519e-e2ff-4bf4-a91c-4e206231c086" width="300px">
+
+## 10. Định dạng bằng CSS
+[:arrow_up: Mục lục](#mục-lục)
