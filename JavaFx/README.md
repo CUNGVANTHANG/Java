@@ -749,7 +749,77 @@ public class Main extends Application {
 
 _Kết quả:_
 
-<img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/cb68519e-e2ff-4bf4-a91c-4e206231c086" width="300px">
+<img src="https://github.com/CUNGVANTHANG/Java/assets/96326479/cb68519e-e2ff-4bf4-a91c-4e206231c086" width="500px">
 
 ## 10. Định dạng bằng CSS
 [:arrow_up: Mục lục](#mục-lục)
+
+_Ví dụ:_ Giao diện như sau
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/f4905f5a-eb35-4d09-9b8a-0393a4d33198)
+
+Ta muốn CSS các Button này thì phải làm sao?
+
+- **Bước 1:**
+
+Chọn **Button1** trên màn hình sau đó thêm `class`, `id` như bình thường
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/8e9e8fc0-48f0-425f-930b-54600f3354f1)
+
+Trong file CSS:
+
+```css
+.button1 {
+    -fx-background-color: red;
+}
+
+.button2 {
+    -fx-background-color: green;
+}
+
+/*Tương trưng cho toàn bộ App*/
+.root {
+
+}
+```
+
+- **Bước 2:**
+
+Trong file `.java` thêm đoạn code này `scene.getStylesheets().add(getClass().getResource("Sample.css").toExternalForm());` với `Sample.css` là tên file CSS đó
+
+```java
+package org.app;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("Sample.fxml"));
+        primaryStage.setTitle("App");
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("Sample.css").toExternalForm()); // Thêm dòng này
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
+```
+
+_Kết quả:_
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/7ee059d5-b64c-46ba-a092-877abdfcf64e)
+
+- **Bước 3:** Để thuận tiện trong việc phát triển
+
+Trong Scene Builder add thêm file `.css` vào để xem cho thuận tiện bằng cách
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/11a7175e-29ef-42d0-92bf-677cdc236237)
