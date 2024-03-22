@@ -271,6 +271,8 @@ public class Main extends Application{
 }
 ```
 
+_Kết quả:_
+
 ![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/13639213-a7c1-4786-aec5-ae7137cf1ee6)
 
 khi bấm vào button sẽ chuyển sang scene2
@@ -348,6 +350,8 @@ public class Main extends Application{
 
 ```
 
+_Kết quả:_
+
 ![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/52170bfd-25b4-4bce-ba4a-5a48341ce20c)
 
 Bấm vào close sẽ hiện ra
@@ -361,3 +365,205 @@ Bấm yes sau đó sẽ hiện ra
 ## 4. Thông báo Dialog
 [:arrow_up: Mục lục](#mục-lục)
 
+```java
+package org.app;
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.util.Pair;
+import java.util.Optional;
+
+public class Main extends Application{
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage primaryStage)  {
+        // Dialog tạo thông báo bắt buộc
+        Dialog<Pair<String, String >> dialog = new Dialog<>();
+        dialog.setTitle("Login Dialog");
+        dialog.setHeaderText("Sign up");
+
+        ButtonType loginButtonType = new ButtonType("login", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL); // ButtonType.CANCEL có sẵn trong thư viện
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10); // Hàng ngang
+        grid.setVgap(10); // Hàng dọc
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        TextField userName = new TextField();
+        userName.setPromptText("Username");
+        PasswordField password = new PasswordField();
+        password.setPromptText("Password");
+
+        grid.add(new Label("Username"), 0, 0);
+        grid.add(userName, 1, 0);
+        grid.add(new Label("Password"), 0, 1);
+        grid.add(password, 1, 1);
+
+        // Khi nào nhập username thì mới hiện ra, không thì ẩn đi
+        Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+        loginButton.setDisable(true);
+
+        // Kiểm tra sự thay đổi của username
+        userName.textProperty().addListener((obserValue, oldValue, newValue) -> {
+            loginButton.setDisable(newValue.trim().isEmpty());
+        });
+        dialog.getDialogPane().setContent(grid);
+
+        // Khi nào nhấn mới trả dữ liệu
+        dialog.setResultConverter(dialogButton -> {
+            // Khi người dùng bấm nút login button type thì sẽ trả về giá trị username và password
+            if (dialogButton == loginButtonType) {
+                return new Pair<>(userName.getText(), password.getText());
+            } else {
+                return null;
+            }
+        });
+
+        // Lưu kết quả trả về
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+        result.ifPresent(userNamePassword -> {
+            System.out.println("Username=" + userNamePassword.getKey()
+                    + ", Password=" + userNamePassword.getValue());
+        });
+    }
+}
+```
+
+_Kết quả:_
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/7d0934f5-da20-4e9c-9711-062039286fed)
+
+sau khi gõ username, login sẽ hiện ra
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/f5ca2af6-3835-4f5c-b32a-385413570e17)
+
+## 5. Check box
+[:arrow_up: Mục lục](#mục-lục)
+
+```java
+package org.app;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage primaryStage)  {
+        Label label = new Label("Programming Language");
+        CheckBox box1 = new CheckBox("Java");
+        CheckBox box2 = new CheckBox("C#");
+        CheckBox box3 = new CheckBox("Python");
+
+        box1.setSelected(true);
+        Button button = new Button("Submit");
+        button.setOnAction(e -> {
+            String message = "Your language:";
+            if (box1.isSelected()) {
+                message += box1.getText();
+            }
+            if (box2.isSelected()) {
+                message += box2.getText();
+            }
+            if (box3.isSelected()) {
+                message += box3.getText();
+            }
+            System.out.println(message);
+        });
+        HBox layoutH = new HBox(10);
+        layoutH.getChildren().addAll(box1, box2, box3);
+        VBox layoutV = new VBox(10);
+        layoutV.getChildren().addAll(label, layoutH, button);
+        Scene scene = new Scene(layoutV, 300, 200);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+}
+```
+
+_Kết quả:_
+
+![image](https://github.com/CUNGVANTHANG/Java/assets/96326479/a67e4d86-375f-4e48-b738-28aac3901ec1)
+
+## 6. Property
+[:arrow_up: Mục lục](#mục-lục)
+
+```java
+// MyNumber.java
+package org.app;
+
+import javafx.beans.property.*;
+
+public class MyNumber {
+    private DoubleProperty number = new SimpleDoubleProperty();
+
+    // Phương thức lấy key value
+    public double getNumber() {
+        return number.get();
+    }
+
+    public DoubleProperty numberProperty() {
+        return number;
+    }
+
+    public void setNumber(double number) {
+        this.number.set(number);
+    }
+}
+
+
+// Main.java
+package org.app;
+
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage primaryStage)  {
+        // Property quản lý 1 giá trị trạng thái nhất định sẽ kiểm soát
+        // và lắng nghe các sự kiện và các thay đổi của nó
+        MyNumber example = new MyNumber();
+        example.numberProperty().addListener((obserValue, oldValue, newValue) -> {
+            System.out.println(obserValue);
+            System.out.println(oldValue);
+            System.out.println(newValue);
+        });
+
+        example.setNumber(10);
+        example.setNumber(11);
+    }
+}
+```
+
+_Kết quả:_
+
+```
+DoubleProperty [value: 10.0]
+0.0
+10.0
+DoubleProperty [value: 11.0]
+10.0
+11.0
+```
+
+Cho thấy được Property bắt được sự thay đổi khi lắng nghe sự kiện.
