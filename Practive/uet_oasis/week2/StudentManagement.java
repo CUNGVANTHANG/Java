@@ -1,19 +1,19 @@
-package uet_oasis;
+package uet_oasis.week2;
 
 public class StudentManagement {
-    private Student1[] students;
+    private Student[] students;
     private int numStudents;
 
     public StudentManagement() {
-        students = new Student1[100];
+        students = new Student[100];
         numStudents = 0;
     }
 
-    public Student1[] getStudents() {
+    public Student[] getStudents() {
         return students;
     }
 
-    public void setStudents(Student1[] students) {
+    public void setStudents(Student[] students) {
         this.students = students;
     }
 
@@ -25,12 +25,12 @@ public class StudentManagement {
         return numStudents;
     }
 
-    static boolean sameGroup(Student1 s1, Student1 s2) {
+    static boolean sameGroup(Student s1, Student s2) {
         return s1 != null && s2 != null && s1.getGroup() != null && s2.getGroup() != null
                 && s1.getGroup().equals(s2.getGroup());
     }
 
-    void addStudent(Student1 newStudent) {
+    void addStudent(Student newStudent) {
         if (newStudent == null) {
             return;
         }

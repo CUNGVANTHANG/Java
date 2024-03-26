@@ -1,4 +1,4 @@
-package uet_oasis;
+package uet_oasis.week1;
 
 public class Hello_world {
     public static String printHello() {

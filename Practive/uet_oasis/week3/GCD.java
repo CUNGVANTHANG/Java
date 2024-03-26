@@ -1,4 +1,4 @@
-package uet_oasis;
+package uet_oasis.week3;
 
 public class GCD {
     static int gcd(int a, int b) {

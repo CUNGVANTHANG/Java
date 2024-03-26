@@ -1,4 +1,4 @@
-package uet_oasis;
+package uet_oasis.week2;
 
 public class JUnit {
     public static int max2Int(int a, int b) {

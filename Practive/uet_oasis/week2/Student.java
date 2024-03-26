@@ -1,33 +1,33 @@
-package uet_oasis;
+package uet_oasis.week2;
 
-public class Student1 {
+public class Student {
     private String name;
     private String id;
     private String group;
     private String email;
 
-    Student1() {
+    Student() {
         this.name = "Student";
         this.id = "000";
         this.group = "K62CB";
         this.email = "uet@vnu.edu.vn";
     }
 
-    Student1(String name, String id, String email) {
+    Student(String name, String id, String email) {
         this.name = name;
         this.id = id;
         this.email = email;
         this.group = "K62CB";
     }
 
-    Student1(String name, String id, String group, String email) {
+    Student(String name, String id, String group, String email) {
         this.name = name;
         this.id = id;
         this.group = group;
         this.email = email;
     }
 
-    Student1(Student1 s) {
+    Student(Student s) {
         this.name = s.getName();
         this.id = s.getId();
         this.group = s.getGroup();

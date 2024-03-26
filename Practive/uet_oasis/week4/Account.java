@@ -1,4 +1,4 @@
-package uet_oasis;
+package uet_oasis.week4;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

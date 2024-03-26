@@ -1,6 +1,7 @@
-package uet_oasis;
+package uet_oasis.week2;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class JUnit_test {

@@ -1,4 +1,4 @@
-package uet_oasis;
+package uet_oasis.week4;
 
 public class Transaction {
     private String operation;

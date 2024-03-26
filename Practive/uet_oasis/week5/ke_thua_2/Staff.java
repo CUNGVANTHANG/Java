@@ -1,4 +1,4 @@
-package uet_oasis;
+package uet_oasis.week5.ke_thua_2;
 
 public class Staff extends Person {
     private String school;

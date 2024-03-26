@@ -1,4 +1,4 @@
-package uet_oasis;
+package uet_oasis.week3;
 
 public class Fibonacci {
     static long fibonacci(long n) {
