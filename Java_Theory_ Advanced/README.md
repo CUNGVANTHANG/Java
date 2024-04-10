@@ -359,6 +359,84 @@ class Main {
 }
 ```
 
+- **NullPointerException**
+
+Ngoại lệ này xảy ra khi một tham chiếu đến một đối tượng không được khởi tạo và bạn cố gắng truy cập đến phương thức hoặc thuộc tính của nó.
+
+```java
+class Main {
+ 
+    public static void main(String[] args) {
+ 
+        String str = null;
+        System.out.println(str.length());
+    }
+}
+```
+
+Trong ví dụ này, biến `str` được gán giá trị `null`, vì vậy khi gọi phương thức `length()` của nó sẽ ném ra `NullPointerException` vì không thể gọi phương thức của một đối tượng `null`.
+
+- **FileNotFoundException**
+
+ Nó xảy ra khi một ứng dụng hoặc chương trình Java cố gắng mở một tệp tin nhưng không tìm thấy tệp tin đó tại đường dẫn được chỉ định.
+
+ ```java
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Mở một FileInputStream để một tệp tin không tồn tại
+            FileInputStream fileInputStream = new FileInputStream(new File("khong-tim-thay.txt"));
+        } catch (FileNotFoundException e) {
+            // Xử lý ngoại lệ FileNotFoundException
+            System.out.println("Không tìm thấy tệp tin.");
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+Trong ví dụ này, chương trình cố gắng mở một `FileInputStream` cho một tệp tin có tên `khong-tim-thay.txt`, nhưng tệp tin này không tồn tại. Do đó, ngoại lệ `FileNotFoundException` sẽ được ném ra và chương trình sẽ xử lý ngoại lệ này.
+
+- **IOException**
+
+Nó đại diện cho một lỗi xảy ra trong quá trình thao tác với dữ liệu trên hệ thống tệp tin hoặc qua mạng. Nó là lớp cha chung cho các ngoại lệ xảy ra khi có vấn đề liên quan đến đọc hoặc ghi dữ liệu từ một nguồn hoặc đích nào đó.
+
+Ví dụ, khi bạn cố gắng đọc dữ liệu từ một tệp tin, nếu tệp tin không tồn tại, bạn sẽ gặp `FileNotFoundException`, một dạng con của `IOException`. Tương tự, khi bạn cố gắng đọc hoặc ghi dữ liệu qua mạng và kết nối bị mất, bạn có thể gặp phải `IOException`.
+
+```java
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Mở một BufferedReader để đọc từ tệp tin
+            BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+            
+            // Đọc dữ liệu từ tệp tin
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            
+            // Đóng BufferedReader sau khi hoàn thành
+            reader.close();
+        } catch (IOException e) {
+            // Xử lý ngoại lệ IOException
+            System.out.println("Đã xảy ra lỗi khi đọc tệp tin.");
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+Trong ví dụ này, chương trình cố gắng mở một `BufferedReader` để đọc từ tệp tin `input.txt`. Nếu tệp tin không tồn tại hoặc có bất kỳ vấn đề nào khác xảy ra khi đọc từ tệp tin, ngoại lệ `IOException` sẽ được ném ra và chương trình sẽ xử lý nó.
+
 ### 2. Xử lý ngoại lệ try, catch
 [:arrow_up: Mục lục](#mục-lục)
 
