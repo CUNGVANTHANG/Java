@@ -1013,7 +1013,7 @@ class Dog extends Animal {
 
 Trên ví dụ trên, chúng ta có thể sử dụng cùng một phương thức ```makeSound()``` để thực hiện hai tác vụ khác nhau. ```makeSound()``` thể hiện tính đa hình
 
-- **Tính đa hình với nạp chồng phương thức**
+- **Tính đa hình với nạp chồng phương thức (Overloading)**
 ```java
 // method with no parameter
 void display() {....}
@@ -1028,7 +1028,7 @@ void display(String name) {...}
 void display(String name, int age) {...}
 ```
 
-Chúng ta có hai cách để thực hiện nạp chồng phương thức.
+Chúng ta có hai cách để thực hiện nạp chồng phương thức (Overloading).
 
   - Số lượng tham số khác nhau
   - Các tham số có kiểu dữ liệu khác nhau
