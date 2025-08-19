@@ -19,21 +19,22 @@
 
 <details>
   <summary>III. Danh sách liên kết</summary>
-  
+
+- [1. Danh sách liên kết](#1-danh-sách-liên-kết)
+- [2. Sự khác biệt giữa danh sách liên kết đơn và mảng](#2-sự-khác-biệt-giữa-danh-sách-liên-kết-đơn-và-mảng)
 </details>
 
 <details>
   <summary>IV. Ngăn xếp và hàng đợi</summary>
-  
+
+- [1. Ngăn xếp (Stack)](#1-ngăn-xếp-stack)
+- [2. Hàng đợi (Queue)](#2-hàng-đợi-queue)
+- [3. Deque](#3-deque)
+
 </details>
 
 <details>
   <summary>V. Thuật toán sắp xếp</summary>
-  
-</details>
-
-<details>
-  <summary>VI. Thuật toán tìm kiếm</summary>
 
 - [1. Thuật toán sắp xếp nổi bọt (Bubble Sort](#1-thuật-toán-sắp-xếp-nổi-bọt-bubble-sort)
 - [2. Thuật toán sắp xếp chọn (Selection Sort)](#2-thuật-toán-sắp-xếp-chọn-selection-sort)
@@ -44,7 +45,14 @@
 - [7. Thuật toán sắp xếp theo cơ số (Radix Sort)](#7-thuật-toán-sắp-xếp-theo-cơ-số-radix-sort)
 - [8. Thuật toán sắp xếp theo khối (Bucket Sort)](#8-thuật-toán-sắp-xếp-theo-khối-bucket-sort)
 - [9. Thuật toán sắp xếp Shell Sort](#9-thuật-toán-sắp-xếp-shell-sort)
+</details>
 
+<details>
+  <summary>VI. Thuật toán tìm kiếm</summary>
+
+- [1. Thuật toán tìm kiếm tuyến tính](#1-thuật-toán-tìm-kiếm-tuyến-tính)
+- [2. Thuật toán tìm kiếm nhị phân](#2-thuật-toán-tìm-kiếm-nhị-phân)
+- [3. Thuật toán tìm kiếm nội suy](#3-thuật-toán-tìm-kiếm-nội-suy)
 </details>
 
 <details>
