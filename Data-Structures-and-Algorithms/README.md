@@ -34,7 +34,17 @@
 
 <details>
   <summary>VI. Thuật toán tìm kiếm</summary>
-  
+
+- [1. Thuật toán sắp xếp nổi bọt (Bubble Sort](#1-thuật-toán-sắp-xếp-nổi-bọt-bubble-sort)
+- [2. Thuật toán sắp xếp chọn (Selection Sort)](#2-thuật-toán-sắp-xếp-chọn-selection-sort)
+- [3. Thuật toán sắp xếp chèn (Insertion Sort)](#3-thuật-toán-sắp-xếp-chèn-insertion-sort)
+- [4. Thuật toán sắp xếp trộn (Merge Sort)](#4-thuật-toán-sắp-xếp-trộn-merge-sort)
+- [5. Thuật toán sắp xếp nhanh (Quick Sort)](#5-thuật-toán-sắp-xếp-nhanh-quick-sort)
+- [6. Thuật toán sắp xếp đếm (Counting Sort)](#6-thuật-toán-sắp-xếp-đếm-couting-sort)
+- [7. Thuật toán sắp xếp theo cơ số (Radix Sort)](#7-thuật-toán-sắp-xếp-theo-cơ-số-radix-sort)
+- [8. Thuật toán sắp xếp theo khối (Bucket Sort)](#8-thuật-toán-sắp-xếp-theo-khối-bucket-sort)
+- [9. Thuật toán sắp xếp Shell Sort](#9-thuật-toán-sắp-xếp-shell-sort)
+
 </details>
 
 <details>
@@ -327,6 +337,170 @@ Khi một danh sách liên kết được sinh ra, nó không cần 7 byte bộ 
 [:arrow_up: Mục lục](#mục-lục)
 
 ## V. Thuật toán sắp xếp
+[:arrow_up: Mục lục](#mục-lục)
+
+### 1. Thuật toán sắp xếp nổi bọt (Bubble Sort)
+[:arrow_up: Mục lục](#mục-lục)
+
+Tham khảo ở đây: https://visualgo.net/en/sorting
+
+Sắp xếp nổi bọt hay Bubble Sort là một thuật toán so sánh các phần tử liền kề và hoán đổi vị trí của chúng nếu chúng không tuân theo thứ tự được chỉ định. Thứ tự có thể tăng dần hoặc giảm dần.
+
+Cách thức hoạt động của thuật toán:
+
+- Bắt đầu từ chỉ số đầu tiên, ta sẽ so sánh phần tử đầu tiên và phần tử thứ hai. Nếu phần tử đầu tiên lớn hơn phần tử thứ hai, chúng sẽ được hoán đổi.
+- Bây giờ, ta sẽ so sánh phần tử thứ hai và phần tử thứ ba. Hoàn đổi chúng nếu chúng không theo thứ tự.
+- Quá trình trên cứ tiếp tục cho đến phần tử cuối cùng.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/17538e22-d91d-41e4-bebf-1804f200513d" />
+
+- Quá trình tương tự diễn ra cho các lần lặp lại còn lại. Sau mỗi lần lặp, phần tử lớn nhất trong số các phần tử chưa được sắp xếp sẽ được đặt ở cuối.
+- Trong mỗi lần lặp, việc so sánh diễn ra cho đến phần tử chưa được sắp xếp cuối cùng.
+- Mảng được sắp xếp khi tất cả các phần tử chưa được sắp xếp được đặt đúng vị trí của chúng.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/ab29785c-1bec-4300-8222-44af94fc322b" />
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/1a27ea21-fc1e-4086-b9c0-b9be38e7f302" />
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/a478c3ae-b3b2-4cab-b9b6-f7455ebe2c37" />
+
+Thuật toán của sắp xếp nổi bọt như sau:
+
+```
+Bublesort (Mảng cần sắp xếp)
+  Sử dụng vòng lặp for với i = 1 cho tới chỉ số của phần tử chưa được sắp xếp cuối cùng -1
+    Nếu phần tử bên trái > phần tử bên phải
+      Hoán đổi hai phần tử này cho nhau
+Kết thúc hàm
+```
+
+| | |
+| :--: | :--: |
+| Độ phức tạp | Thời gian	|
+| Trường hợp tốt nhất | O(n) |
+| Trường hợp xấu nhất |	O(n^2) |
+| Trường hợp trung bình |	O(n^2) |
+| Độ phức tạp không gian |	O(1) |
+
+```java
+  static void bubbleSort(int array[]) {
+    int size = array.length;
+    
+    // Vòng lặp để truy cập từng phần tử mảng
+    for (int i = 0; i < size - 1; i++)
+    
+      // Vòng lặp để so sánh các phần tử mảng
+      for (int j = 0; j < size - i - 1; j++)
+
+        // So sánh hai phần tử liền kề, thay đổi > thành < để sắp xếp theo thứ tự giảm dần
+        if (array[j] > array[j + 1]) {
+
+          // swap xảy ra nếu các phần tử không theo thứ tự dự định
+          int temp = array[j];
+          array[j] = array[j + 1];
+          array[j + 1] = temp;
+        }
+  }
+```
+
+### 2. Thuật toán sắp xếp chọn (Selection Sort)
+[:arrow_up: Mục lục](#mục-lục)
+
+Cách hoạt động của thuật toán sắp xếp chọn:
+
+**Bước 1**: Giả sử ta có mảng như hình bên dưới. Ta sẽ đặt phần tử đầu tiên làm phần tử nhỏ nhất và gán nó vào một biến có tên là `min`.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/842ed2c0-02f8-447e-aea0-54ab2598f953" />
+
+**Bước 2**: So sánh phần tử nhỏ nhất này với phần tử thứ hai. Nếu phần tử thứ hai nhỏ hơn phần tử `min`, ta sẽ gán phần tử thứ hai làm phần tử nhỏ nhất cho biến `min`.
+
+So sánh phần tử nhỏ nhất với phần tử thứ ba. Một lần nữa, nếu phần tử thứ ba nhỏ hơn, thì ta sẽ gán giá trị nhỏ nhất cho phần tử thứ ba, nếu không thì không làm gì cả. Quá trình tiếp tục cho đến phần tử cuối cùng.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/3a2307cd-b509-4f06-86eb-2edef9bdf22e" />
+
+**Bước 3**: Sau mỗi lần lặp lại, giá trị nhỏ nhất được đặt ở phía trước danh sách chưa được sắp xếp.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/ebeeea2b-1f6b-4b07-9d13-485a692dc37d" />
+
+**Bước 4:** Đối với mỗi lần lặp, chỉ số sẽ bắt đầu từ phần tử chưa được sắp xếp đầu tiên. Bước 1 đến bước 3 được lặp lại cho đến khi tất cả các phần tử được đặt đúng vị trí của chúng.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/4ca0e4ca-39cb-46fd-9e8e-aa66a6006189" />
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/5d7563ee-5d2b-4a8e-9c29-dafd2f0c928b" />
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/3fc9d26d-f880-4d59-9de6-46e92d5aa09d" />
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/3e7f8d48-7a54-49f8-b6f6-ee41ab18266f" />
+
+Kết quả ta được một mảng các giá trị đã được sắp xếp theo thứ tự từ bé đến lớn.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/aa7ac138-f345-4e8e-b8d2-7684043c2d89" />
+
+Đoạn giả mã cho thuật toán sắp xếp lựa chọn như sau:
+
+```
+Selection Sort (mảng, kích thước)
+   Lặp lại (kích thước - 1) lần
+   Đặt phần tử không được sắp xếp đầu tiên làm phần tử nhỏ nhất
+   Sử dụng vòng lặp for với mỗi phần tử chưa được sắp xếp
+     if phần tử < phần tử nhỏ nhất
+       Đặt phần tử làm phần tử nhỏ nhất
+   Hoán đổi phần tử nhỏ nhất với vị trí không được sắp xếp đầu tiên
+Kết thúc hàm
+```
+
+| | |
+| :--: | :--: |
+| Độ phức tạp | Thời gian	|
+| Trường hợp tốt nhất | 	O(n^2) |
+| Trường hợp xấu nhất |	O(n^2) |
+| Trường hợp trung bình |	O(n^2) |
+| Độ phức tạp không gian |	O(1) |
+
+```java
+static void selectionSort(int array[]) {
+    int size = array.length;
+
+    // loop để di chuyển ranh giới của mảng chưa sắp xếp
+    for (int i = 0; i < size - 1; i++) {
+
+        // giả định phần tử nhỏ nhất ở vị trí i
+        int minIndex = i;
+
+        // tìm phần tử nhỏ nhất trong mảng chưa sắp xếp
+        for (int j = i + 1; j < size; j++) {
+            if (array[j] < array[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        // đổi chỗ phần tử nhỏ nhất với phần tử đầu tiên của mảng chưa sắp xếp
+        int temp = array[minIndex];
+        array[minIndex] = array[i];
+        array[i] = temp;
+    }
+}
+```
+
+### 3. Thuật toán sắp xếp chèn (Insertion Sort)
+[:arrow_up: Mục lục](#mục-lục)
+
+### 4. Thuật toán sắp xếp trộn (Merge Sort)
+[:arrow_up: Mục lục](#mục-lục)
+
+### 5. Thuật toán sắp xếp nhanh (Quick Sort)
+[:arrow_up: Mục lục](#mục-lục)
+
+### 6. Thuật toán sắp xếp đếm (Counting Sort)
+[:arrow_up: Mục lục](#mục-lục)
+
+### 7. Thuật toán sắp xếp theo cơ số (Radix Sort)
+[:arrow_up: Mục lục](#mục-lục)
+
+### 8. Thuật toán sắp xếp theo khối (Bucket Sort)
+[:arrow_up: Mục lục](#mục-lục)
+
+### 9. Thuật toán sắp xếp Shell Sort
 [:arrow_up: Mục lục](#mục-lục)
 
 ## VI. Thuật toán tìm kiếm
