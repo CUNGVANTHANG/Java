@@ -265,11 +265,63 @@ Khi chèn thêm một nút, ta chỉ cần nối nút mới này với nút nằ
 
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/77e694f5-84d3-46b0-8aeb-d64dc41eaf0d" />
 
+Khi xóa một nút, ta chỉ cần nối nút nằm ở phía trước nút cần xóa này với nút nằm ở đằng sau nút cần xóa.
+
+#### 6. Hiển thị danh sách
+
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/ec219ce5-e6df-4ef1-ae44-d190e72f6233" />
+
+Khi hiển thị danh sách, ta chỉ việc duyệt qua từng nút trong danh sách và in ra dữ liệu của mỗi nút đó.
+
+#### 7. Thao tác tìm kiếm nút trong danh sách
+
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/57dfbbf0-ff02-494d-88fb-62721d7279d5" />
+
+Khi tìm một đơn vị dữ liệu trong một nút, ta chỉ cần duyệt qua từng nút và kiểm tra xem dữ liệu đó có phải là dữ liệu cần tìm hay không, nếu là dữ liệu cần tìm, ta sẽ dừng lại và lấy dữ liệu ra từ nút đó.
+
+#### 8. Thay đổi giá trị dữ liệu của một nút trong danh sách
+
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/a42a76e2-3813-4382-81fc-12170978af04" />
+
+Khi tìm một đơn vị dữ liệu trong một nút, ta chỉ cần duyệt qua từng phần tử và kiểm tra xem dữ liệu đó có phải là cần cập nhật hay không, nếu là dữ liệu cần tìm, ta sẽ dừng lại và thay đổi dữ liệu mới trong từ phần tử đó. Nếu không, ta sẽ tiếp tục duyệt qua toàn bộ danh sách cho đến khi tìm thấy, và nếu duyệt phần cuối của danh sách có giá trị là `NULL`, tức là giá trị dữ liệu cần thay đổi không được lưu trong danh sách.
 
 ### 2. Sự khác biệt giữa danh sách liên kết đơn và mảng
 [:arrow_up: Mục lục](#mục-lục)
 
+#### 1. Nhắc lại về mảng
+
+Cấu trúc dữ liệu mảng có các đặc điểm sau:
+- Truy cập ngẫu nhiên (Thời gian tìm kiếm nhanh).
+- Bộ nhớ cần cấp cho một phần tử ít hơn.
+- Thời gian xóa và thêm phần tử chậm hơn.
+- Kích thước cố định.
+- Sử dụng bộ nhớ không hiệu quả.
+- Các phần tử nằm trên một vùng bộ nhớ bao gồm các ô chứa dữ liệu liền nhau.
+
+#### 2. Danh sách liên kết
+
+Danh sách liên kết có các đặc điểm sau:
+- Thời gian thêm và xóa phần tử nhanh hơn.
+- Kích thước động.
+- Sử dụng hiệu quả bộ nhớ.
+- Thời gian tìm kiếm chậm hơn so với mảng.
+- Tốn nhiều bộ nhớ hơn cho một phần tử. Các phần tử trong danh sách liên kết nằm trên các phân vùng bộ nhớ khác nhau, do đó, các phần tử trong danh sách liên kết cần chứa một con trỏ để trỏ tới các phần tử đằng sau nó.
+
+Khi một danh sách liên kết được sinh ra, nó không cần 7 byte bộ nhớ tất cả nằm ở cùng một phân vùng. Một byte có thể tồn tại ở một phân vùng nào đó, trong khi byte tiếp theo có thể được lưu trữ ở một phân vùng khác trong bộ nhớ. Danh sách liên kết không cần chiếm một khối bộ nhớ, thay vào đó, bộ nhớ mà chúng sử dụng có thể nằm rải rác ở các phân vùng khác nhau.
+
+#### 3. So sánh giữa danh sách liên kết và mảng
+
 <img src="https://github.com/CUNGVANTHANG/Java_Back-end/assets/96326479/b217e40f-3a77-4d93-b806-ec7bb52b2634" width="600px">
+
+| | |
+| :--: | :--: |
+| Mảng	| Danh sách liên kết |
+| Dữ liệu chỉ có thể được lưu trữ trong các khối bộ nhớ liền nhau, nên kích thước của nó không thể thay đổi trong thời gian thực thi.	| Mỗi nút trỏ đến nút tiếp theo để dữ liệu có thể tồn tại ở các địa chỉ không liền kề nhau, cho phép kích thước có thể thay đổi trong thời gian thực thi. |
+| Việc xáo trộn một mảng sẽ phức tạp hơn và chiếm nhiều bộ nhớ hơn.	| Việc xáo trộn danh sách liên kết chỉ là vấn đề thay đổi các nút trong danh sách, do đó sẽ dễ dàng hơn. |
+| Mảng cho phép việc truy cập các phần tử một cách ngẫu nhiên bằng cách sử dụng chỉ số. |	Danh sách liên kết chỉ cho phép truy cập các phần tử theo thứ tự từ đầu đến cuối. |
+| Kích thước của một mảng được biết trước hoặc được tạo lại khi nó cần phát triển lớn hơn. Bởi vì không gian bộ nhớ được phân bổ cho mảng trong thời gian biên dịch, tức là kích thước của nó được cố định khi ta khai báo nó. |	Danh sách liên kết phát triển một cách tự nhiên, theo thứ tự được thêm dữ liệu. Không gian bộ nhớ được phân bổ cho danh sách liên kết trong thời gian thực thi, tức là kích thước của nó có thể tăng hoặc giảm trong khi chương trình đang thực thi. |
+| Một mảng sẽ giả định rằng mọi phần tử đều có cùng kích thước vì các phần tử của mảng phải có cùng kiểu dữ liệu. |	Dễ dàng lưu trữ dữ liệu có kích thước khác nhau trong danh sách liên kết. |
+| Mảng có kiểu mảng một chiều, mảng hai chiều hoặc mảng đa chiều. |	Danh sách liên kết có kiểu danh sách liên kết đơn, đôi hoặc vòng. |
 
 ## IV. Ngăn xếp và hàng đợi
 [:arrow_up: Mục lục](#mục-lục)
