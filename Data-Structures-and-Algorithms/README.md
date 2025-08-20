@@ -390,6 +390,8 @@ Kết thúc hàm
 | Trường hợp trung bình |	O(n^2) |
 | Độ phức tạp không gian |	O(1) |
 
+_Source code:_
+
 ```java
   static void bubbleSort(int array[]) {
     int size = array.length;
@@ -465,6 +467,8 @@ Kết thúc hàm
 | Trường hợp trung bình |	O(n^2) |
 | Độ phức tạp không gian |	O(1) |
 
+_Source code:_
+
 ```java
 static void selectionSort(int array[]) {
     int size = array.length;
@@ -493,8 +497,87 @@ static void selectionSort(int array[]) {
 ### 3. Thuật toán sắp xếp chèn (Insertion Sort)
 [:arrow_up: Mục lục](#mục-lục)
 
+Thuật toán sắp xếp chèn hoạt động tương tự như chúng ta sắp xếp các lá bài trên tay trong một trò chơi bằng cách sử dụng các lá bài. Chúng ta giả định rằng lá bài đầu tiên đã được sắp xếp, chúng ta chọn một lá chưa được sắp xếp. Nếu lá chưa được sắp xếp lớn hơn lá trên tay, nó được đặt ở bên phải, còn nhỏ hơn sẽ là bên trái. Theo cách tương tự, các lá chưa được phân loại khác được lấy và đặt vào đúng vị trí của chúng.
+
+Một cách tiếp cận tương tự được sử dụng bằng cách sắp xếp chèn. Sắp xếp chèn là một thuật toán sắp xếp có nhiệm vụ đặt một phần tử chưa được sắp xếp vào vị trí thích hợp của nó trong mỗi lần lặp.
+
+Cách thức hoạt động của thuật toán sắp xếp chèn:
+
+- Giả sử chúng ta có mảng như trong hình bên dưới và cần sắp chúng theo thứ tự từ bé đến lớn.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/e44dea3b-7c57-41c6-9354-7ffa89bbc399" />
+
+- Bước 1: Phần tử đầu tiên trong mảng được giả định là đã được sắp xếp. Ta sẽ lấy phần tử thứ hai và lưu trữ riêng trong khóa. So sánh khóa với phần tử đầu tiên. Nếu phần tử đầu tiên lớn hơn khóa, thì khóa được đặt trước phần tử đầu tiên.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/424ad9ec-326d-4564-bc38-206cf18c4623" />
+
+- Bước 2: Bây giờ, hai phần tử đầu tiên đã được sắp xếp. Lấy phần tử thứ ba và so sánh nó với các phần tử bên trái của nó. Đặt nó ngay sau phần tử nhỏ hơn nó. Nếu không có phần tử nào nhỏ hơn nó, thì ta sẽ đặt nó ở đầu mảng.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/92354f4f-e98c-42a3-b5ba-7e55438d6b1e" />
+
+- Bước 3: Tương tự, ta sẽ đặt mọi phần tử chưa được sắp xếp vào đúng vị trí của nó
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/803bf9cb-27ef-458c-ab42-7acd5e75248c" />
+
+- Cuối cùng, ta sẽ có được mảng chứa các phần tử đã được sắp xếp theo chiều tăng dần hay từ bé đến lớn.
+
+| | |
+| :--: | :--: |
+| Độ phức tạp | Thời gian	|
+| Trường hợp tốt nhất | 	O(n) |
+| Trường hợp xấu nhất |	O(n^2) |
+| Trường hợp trung bình |	O(n) |
+| Độ phức tạp không gian |	O(1) |
+
+_Source code:_
+
+```java
+static void insertionSort(int array[]) {
+    int size = array.length;
+
+    // duyệt qua từng phần tử từ vị trí 1 đến cuối mảng
+    for (int i = 1; i < size; i++) {
+        int key = array[i];   // phần tử cần chèn
+        int j = i - 1;
+
+        // dịch các phần tử lớn hơn key sang phải một vị trí
+        while (j >= 0 && array[j] > key) {
+            array[j + 1] = array[j];
+            j--;
+        }
+
+        // chèn key vào đúng vị trí
+        array[j + 1] = key;
+    }
+}
+```
+
 ### 4. Thuật toán sắp xếp trộn (Merge Sort)
 [:arrow_up: Mục lục](#mục-lục)
+
+Merge Sort hay thuật toán sắp xếp trộn là một trong những thuật toán sắp xếp phổ biến nhất dựa trên nguyên tắc của thuật toán chia để trị. Ở đây, một bài toán được chia thành nhiều bài toán con. Mỗi vấn đề con được giải quyết một cách riêng lẻ. Cuối cùng, các vấn đề con sẽ được kết hợp để tạo thành giải pháp cuối cùng cho bài toán.
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/d59fb5a8-b201-43e4-814a-6a96ba291133" />
+
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/5cbdaa8e-c452-4154-a2fd-6a865e88a929" />
+
+**Chiến lược chia để trị**
+
+Bằng cách sử dụng kỹ thuật chia để trị, chúng ta sẽ chia một vấn đề thành các bài toán con. Khi lời giải cho mỗi bài toán con đã hoàn thành, chúng ta sẽ kết hợp kết quả từ các bài toán con để giải vấn đề chính.
+
+Giả sử chúng ta phải sắp xếp một mảng A. Một bài toán con sẽ là sắp xếp một phần con của mảng này bắt đầu từ chỉ số `p` và kết thúc tại chỉ số `r`, được ký hiệu là `A[p..r]`.
+
+_1. Bước chia_
+
+Nếu `q` là điểm giữa `p` và `r` thì ta có thể tách mảng con `A[p..r]` thành hai mảng `A[p…q]` và `A[q+1, r]`.
+
+_2. Bước trị_
+
+Trong bước này, chúng ta sẽ cố gắng giải quyết các mảng con bằng cách sắp xếp cả hai mảng con `A[p..q]` và `A[q+1, r]`. Nếu chúng ta chưa đến trường hợp cuối cùng, chúng ta sẽ chia cả hai mảng con này và cố gắng sắp xếp chúng.
+
+_3. Bước trộn_
+
+Khi bước trị kết thúc và chúng ta nhận được hai mảng con được sắp xếp là `A[p…q]` và `A[q+1, r]` cho mảng `A[p…r]`, chúng ta sẽ kết hợp các kết quả bằng cách tạo một mảng được sắp xếp `A[p..r]` từ hai mảng con đã được sắp xếp `A[p..q]` và `A[q+1, r]`.
 
 ### 5. Thuật toán sắp xếp nhanh (Quick Sort)
 [:arrow_up: Mục lục](#mục-lục)
